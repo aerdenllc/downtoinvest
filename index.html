@@ -866,27 +866,34 @@
   /* ── Waitlist ── */
   function handleWaitlist(e) {
     e.preventDefault();
-    var name = document.getElementById('wl-name').value.trim();
+    var name  = document.getElementById('wl-name').value.trim();
     var email = document.getElementById('wl-email').value.trim();
     var firstName = name.split(' ')[0];
 
-    /* Send to Kit in the background */
-    var formData = new FormData();
-    formData.append('fields[first_name]', name);
-    formData.append('email_address', email);
-    fetch('https://app.kit.com/forms/9454398/subscriptions', {
-      method: 'POST',
-      body: formData,
-      headers: { 'Accept': 'application/json' }
-    }).catch(function() {}); /* silent fail — doesn't affect the user experience */
+    /* Populate the hidden Kit form and submit it — Kit's own script handles CORS */
+    document.getElementById('kit-first-name').value = name;
+    document.getElementById('kit-email').value       = email;
+    document.getElementById('kit-hidden-form').submit();
 
-    /* Show success immediately */
+    /* Show success state immediately */
     document.getElementById('wl-form').style.display = 'none';
     document.getElementById('wl-success-name').textContent = firstName;
     document.getElementById('wl-success').style.display = 'block';
     fireConfetti();
   }
 </script>
+
+<!-- Hidden Kit form — plain HTML POST to a hidden iframe avoids CORS entirely -->
+<iframe name="kit-iframe" style="display:none" aria-hidden="true"></iframe>
+<form id="kit-hidden-form"
+      action="https://app.kit.com/forms/9454398/subscriptions"
+      method="POST"
+      target="kit-iframe"
+      style="display:none"
+      aria-hidden="true">
+  <input type="text"  id="kit-first-name" name="fields[first_name]" />
+  <input type="email" id="kit-email"       name="email_address" />
+</form>
 
 </body>
 </html>
