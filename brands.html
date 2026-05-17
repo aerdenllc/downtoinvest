@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Work With downtoinvest | Media Kit</title>
+  <meta name="description" content="Brand partnerships and media kit for downtoinvest — financial literacy content by Mallory Warren, CFP®." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg:        #f5f0e8;
+      --white:     #ffffff;
+      --dark:      #1a1a1a;
+      --red:       #c8281e;
+      --red-dark:  #a01e16;
+      --red-light: #faecea;
+      --cream-mid: #ede5d8;
+      --text:      #1a1a1a;
+      --muted:     #7a6f64;
+      --border:    #e2d9cc;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(2.2rem, 9vw, 3rem);
+      line-height: 1.0;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+    }
+    h2 {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(1.4rem, 5vw, 1.9rem);
+      line-height: 1.05;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .wrap { max-width: 480px; margin: 0 auto; padding: 0 22px; }
+    .divider { height: 1px; background: var(--border); }
+    .label {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 10px;
+    }
+
+    /* ─── Nav ──────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--dark);
+      padding: 14px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .wordmark {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+    .wordmark em { color: var(--red); font-style: normal; }
+    .nav-back {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      transition: color 0.18s;
+    }
+    .nav-back:hover { color: rgba(255,255,255,0.8); }
+
+    /* ─── Hero ─────────────────────────────────────── */
+    .hero {
+      background: var(--red);
+      padding: 52px 22px 48px;
+    }
+    .hero-inner { max-width: 480px; margin: 0 auto; }
+    .hero-eyebrow {
+      color: rgba(255,255,255,0.55);
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 14px;
+      display: block;
+    }
+    .hero h1 { color: #fff; margin-bottom: 16px; }
+    .hero p {
+      color: rgba(255,255,255,0.72);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      max-width: 400px;
+    }
+
+    /* ─── Sections ─────────────────────────────────── */
+    .section {
+      padding: 44px 22px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .section-white {
+      background: var(--white);
+      padding: 44px 0;
+    }
+    .section-white .wrap { max-width: 480px; margin: 0 auto; padding: 0 22px; }
+    .section-dark {
+      background: var(--dark);
+      padding: 52px 22px;
+    }
+    .section-dark-inner { max-width: 480px; margin: 0 auto; }
+
+    /* ─── About ─────────────────────────────────────── */
+    .about-text {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-top: 12px;
+    }
+    .about-text strong { color: var(--text); font-weight: 600; }
+    .about-callout {
+      background: var(--red);
+      padding: 18px 20px;
+      margin-top: 22px;
+    }
+    .about-callout p {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.2rem;
+      line-height: 1.25;
+      color: #fff;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    /* ─── Highlight Bar ─────────────────────────────── */
+    .highlight-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 0;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
+    .highlight-cell {
+      background: var(--dark);
+      padding: 16px 10px;
+      text-align: center;
+    }
+    @media (max-width: 320px) {
+      .highlight-bar { grid-template-columns: 1fr; }
+      .highlight-num { font-size: 1.5rem; }
+    }
+    .highlight-num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.1;
+    }
+    .highlight-label {
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.04em;
+      margin-top: 3px;
+      line-height: 1.35;
+    }
+
+    /* ─── Stats ─────────────────────────────────────── */
+    .stats-note {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .stats-note::before {
+      content: '';
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      background: var(--red);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .platform-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 24px 0 10px;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+    .stats-grid.five { grid-template-columns: repeat(3, 1fr); }
+    .stat-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 16px 14px;
+    }
+    .stat-card.span2 { grid-column: span 2; }
+    .stat-card.span3 { grid-column: span 3; }
+    .stat-num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--red);
+      line-height: 1.0;
+      margin-bottom: 3px;
+    }
+    .stat-lbl {
+      font-size: 0.72rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    .stat-sub {
+      font-size: 0.65rem;
+      color: var(--muted);
+      opacity: 0.7;
+      margin-top: 1px;
+    }
+
+    /* ─── Bar Charts ─────────────────────────────────── */
+    .bar-section { margin-top: 28px; }
+    .bar-group { margin-bottom: 22px; }
+    .bar-group-title {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .bar-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 7px;
+    }
+    .bar-row-label {
+      font-size: 0.78rem;
+      color: var(--text);
+      min-width: 52px;
+      flex-shrink: 0;
+    }
+    .bar-track {
+      flex: 1;
+      height: 8px;
+      background: var(--cream-mid);
+      position: relative;
+    }
+    .bar-fill {
+      height: 100%;
+      background: var(--red);
+    }
+    .bar-pct {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text);
+      min-width: 36px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .bar-gender-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 7px;
+    }
+    .bar-gender-label {
+      font-size: 0.78rem;
+      color: var(--text);
+      min-width: 52px;
+    }
+    .bar-gender-track {
+      flex: 1;
+      height: 8px;
+      background: var(--cream-mid);
+    }
+    .bar-gender-fill {
+      height: 100%;
+    }
+    .bar-gender-pct {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text);
+      min-width: 36px;
+      text-align: right;
+    }
+
+    /* ─── Audience ──────────────────────────────────── */
+    .audience-insight {
+      background: var(--red);
+      padding: 20px 22px;
+      margin-top: 28px;
+    }
+    .audience-insight p {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.1rem;
+      line-height: 1.3;
+      color: #fff;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .audience-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 18px;
+    }
+    .audience-tag {
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 7px 13px;
+      font-size: 0.78rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+    .inferred-note {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 14px;
+      line-height: 1.65;
+      font-style: italic;
+    }
+
+    /* ─── Rates ─────────────────────────────────────── */
+    .rate-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-top: 18px;
+    }
+    .rate-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 18px 16px;
+    }
+    .rate-card.featured {
+      background: var(--dark);
+      border-color: var(--dark);
+      grid-column: span 2;
+    }
+    .rate-card-label {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .rate-card.featured .rate-card-label { color: rgba(255,255,255,0.45); }
+    .rate-price {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--red);
+      line-height: 1.0;
+      margin-bottom: 6px;
+    }
+    .rate-card.featured .rate-price { color: #fff; }
+    .rate-desc {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+    .rate-card.featured .rate-desc { color: rgba(255,255,255,0.55); }
+    .rate-badge {
+      display: inline-block;
+      background: var(--red);
+      color: #fff;
+      padding: 2px 8px;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .packages-title {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 24px 0 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .package-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .package-name {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+    .package-desc {
+      font-size: 0.76rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+    .package-right { text-align: right; flex-shrink: 0; }
+    .package-price {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .package-save {
+      font-size: 0.68rem;
+      color: var(--red);
+      font-weight: 600;
+      margin-top: 2px;
+    }
+    .whitelisting-note {
+      background: var(--red-light);
+      border: 1px solid var(--border);
+      padding: 14px 16px;
+      margin-top: 16px;
+      font-size: 0.82rem;
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .whitelisting-note strong { color: var(--red); font-weight: 600; }
+
+    /* ─── Past Work ─────────────────────────────────── */
+    .brand-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+    .brand-chip {
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 10px 18px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .past-note {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-top: 16px;
+    }
+
+    /* ─── Contact ───────────────────────────────────── */
+    .section-dark .label { color: rgba(255,255,255,0.4); }
+    .section-dark h2 { color: #fff; margin-bottom: 10px; }
+    .section-dark p {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin-bottom: 22px;
+    }
+    .contact-block {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 20px 20px;
+    }
+    .contact-block p {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.82rem;
+      margin-bottom: 6px;
+    }
+    .contact-block a {
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* ─── Footer ───────────────────────────────────── */
+    footer {
+      background: var(--dark);
+      padding: 32px 22px 28px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .footer-inner { max-width: 480px; margin: 0 auto; }
+    .footer-mark {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .footer-mark em { color: var(--red); font-style: normal; }
+    .footer-tagline { font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-bottom: 18px; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-bottom: 18px; }
+    .footer-links a { font-size: 0.76rem; color: rgba(255,255,255,0.35); transition: color 0.2s; }
+    .footer-links a:hover { color: rgba(255,255,255,0.7); }
+    .footer-legal {
+      font-size: 0.66rem;
+      color: rgba(255,255,255,0.22);
+      line-height: 1.65;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding-top: 16px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════ NAV -->
+<nav>
+  <a href="index.html" class="wordmark">down<em>to</em>invest</a>
+  <a href="index.html" class="nav-back">&#8592; Back to site</a>
+</nav>
+
+
+<!-- ═══════════════════ HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <span class="hero-eyebrow">Media Kit &middot; Updated Weekly</span>
+    <h1>Let&#8217;s work together.</h1>
+    <p>Financial literacy content backed by a real CFP&#174; with 10 years in finance. An engaged, high-intent audience that is actively building wealth and looking for tools they can trust.</p>
+  </div>
+</div>
+
+<!-- highlight bar -->
+<div class="highlight-bar">
+  <div class="highlight-cell">
+    <div class="highlight-num">~60K</div>
+    <div class="highlight-label">Combined Followers</div>
+  </div>
+  <div class="highlight-cell">
+    <div class="highlight-num">977K+</div>
+    <div class="highlight-label">Combined Views (60 Days)</div>
+  </div>
+  <div class="highlight-cell">
+    <div class="highlight-num">72&#8211;78%</div>
+    <div class="highlight-label">Female Audience</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+
+<!-- ═══════════════════ ABOUT -->
+<div class="section">
+  <span class="label">Who I am</span>
+  <h2>Mallory Warren, CFP&#174;</h2>
+  <p class="about-text">
+    I&#8217;m a <strong>CERTIFIED FINANCIAL PLANNER&#8482; Professional with over 10 years of experience in finance</strong> who left a Wall Street career to make financial education accessible to real people. Through downtoinvest, I cover investing, ETFs, the stock market, and long-term wealth building — alongside the other side of money: how to spend it well. That means helping my audience identify everyday products that are genuinely worth the price, and encouraging intentional spending — putting money toward things that make life fuller, not just reflexively cutting everything. It&#8217;s finance content with real credentials, built for people who want to get it right.
+  </p>
+  <p class="about-text" style="margin-top:10px;">
+    Unlike most finance creators, the CFP&#174; credential carries a trust premium with audiences. My followers know I know what I&#8217;m talking about — and that I only recommend things I actually believe in.
+  </p>
+</div>
+
+<div class="divider"></div>
+
+
+<!-- ═══════════════════ STATS -->
+<div class="section-white">
+  <div class="wrap">
+    <span class="label">By the numbers</span>
+    <h2>Key Metrics</h2>
+    <p class="stats-note">Last 60 days &middot; Last updated: May 17, 2026</p>
+
+    <div class="platform-label">TikTok</div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-num">792K</div>
+        <div class="stat-lbl">Post Views</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">~28.3K</div>
+        <div class="stat-lbl">Avg Views / Video</div>
+        <div class="stat-sub">28 posts</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">40K</div>
+        <div class="stat-lbl">Likes</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">3,107</div>
+        <div class="stat-lbl">Shares</div>
+      </div>
+    </div>
+
+    <div class="platform-label">Instagram</div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-num">185K</div>
+        <div class="stat-lbl">Total Views</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">~7,718</div>
+        <div class="stat-lbl">Avg Views / Video</div>
+        <div class="stat-sub">24 posts</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">97.4K</div>
+        <div class="stat-lbl">Accounts Reached</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">92.8%</div>
+        <div class="stat-lbl">Non-Follower Reach</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+
+<!-- ═══════════════════ AUDIENCE -->
+<div class="section">
+  <span class="label">Who&#8217;s watching</span>
+  <h2>Audience Insights</h2>
+
+  <!-- Gender bars -->
+  <div class="bar-section">
+    <div class="bar-group">
+      <div class="bar-group-title">Gender &mdash; TikTok</div>
+      <div class="bar-row">
+        <div class="bar-row-label">Female</div>
+        <div class="bar-track"><div class="bar-fill" style="width:78%;"></div></div>
+        <div class="bar-pct">78%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-row-label">Male</div>
+        <div class="bar-track"><div class="bar-fill" style="width:22%; background:var(--border);"></div></div>
+        <div class="bar-pct">22%</div>
+      </div>
+    </div>
+
+    <div class="bar-group">
+      <div class="bar-group-title">Gender &mdash; Instagram</div>
+      <div class="bar-row">
+        <div class="bar-row-label">Women</div>
+        <div class="bar-track"><div class="bar-fill" style="width:72.3%;"></div></div>
+        <div class="bar-pct">72.3%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-row-label">Men</div>
+        <div class="bar-track"><div class="bar-fill" style="width:27.7%; background:var(--border);"></div></div>
+        <div class="bar-pct">27.7%</div>
+      </div>
+    </div>
+
+    <!-- Age TikTok -->
+    <div class="bar-group">
+      <div class="bar-group-title">Age &mdash; TikTok</div>
+      <div class="bar-row">
+        <div class="bar-row-label">18&#8211;24</div>
+        <div class="bar-track"><div class="bar-fill" style="width:10.9%;"></div></div>
+        <div class="bar-pct">10.9%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-row-label">25&#8211;34</div>
+        <div class="bar-track"><div class="bar-fill" style="width:42.2%;"></div></div>
+        <div class="bar-pct">42.2%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-row-label">35&#8211;44</div>
+        <div class="bar-track"><div class="bar-fill" style="width:28.6%;"></div></div>
+        <div class="bar-pct">28.6%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-row-label">45&#8211;54</div>
+        <div class="bar-track"><div class="bar-fill" style="width:12.6%;"></div></div>
+        <div class="bar-pct">12.6%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-row-label">55+</div>
+        <div class="bar-track"><div class="bar-fill" style="width:5.7%;"></div></div>
+        <div class="bar-pct">5.7%</div>
+      </div>
+    </div>
+
+    <!-- Age Instagram -->
+    <div class="bar-group">
+      <div class="bar-group-title">Age &mdash; Instagram</div>
+      <div class="bar-row">
+        <div class="bar-row-label">18&#8211;24</div>
+        <div class="bar-track"><div class="bar-fill" style="width:2.5%;"></div></div>
+        <div class="bar-pct">2.5%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-row-label">25&#8211;34</div>
+        <div class="bar-track"><div class="bar-fill" style="width:17.4%;"></div></div>
+        <div class="bar-pct">17.4%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-row-label">35&#8211;44</div>
+        <div class="bar-track"><div class="bar-fill" style="width:27.5%;"></div></div>
+        <div class="bar-pct">27.5%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-row-label">45&#8211;54</div>
+        <div class="bar-track"><div class="bar-fill" style="width:26.3%;"></div></div>
+        <div class="bar-pct">26.3%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-row-label">55&#8211;64</div>
+        <div class="bar-track"><div class="bar-fill" style="width:21%;"></div></div>
+        <div class="bar-pct">21.0%</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="audience-insight">
+    <p>25&#8211;44 female &mdash; the primary household financial decision-maker, actively seeking credible guidance.</p>
+  </div>
+
+  <div class="audience-tags">
+    <div class="audience-tag">Early to mid-career</div>
+    <div class="audience-tag">Starting or growing investments</div>
+    <div class="audience-tag">Skeptical of generic advice</div>
+    <div class="audience-tag">High purchase intent</div>
+    <div class="audience-tag">Values credentials &amp; trust</div>
+    <div class="audience-tag">Building toward long-term goals</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+
+<!-- ═══════════════════ RATES -->
+<div class="section-white">
+  <div class="wrap">
+    <span class="label">Partnership rates</span>
+    <h2>What&#8217;s available</h2>
+
+    <p class="about-text" style="margin-top:16px;">
+      I&#8217;d love to explore how we can work together. Whether that&#8217;s sponsored partnership content on my TikTok and Instagram, or UGC created for your own channels &#8212; I&#8217;m open to both.
+    </p>
+    <p class="about-text" style="margin-top:10px;">
+      Package rates are tailored to your campaign needs. Reach out and we&#8217;ll figure out what makes sense.
+    </p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+
+<!-- ═══════════════════ PAST WORK -->
+<div class="section">
+  <span class="label">Past partnerships</span>
+  <h2>Brands I&#8217;ve Worked With</h2>
+
+  <div class="brand-chips">
+    <div class="brand-chip">Keeper Tax</div>
+    <div class="brand-chip">Monarch Money</div>
+    <div class="brand-chip">Peerspace</div>
+  </div>
+
+  <p class="past-note">I only partner with brands I genuinely believe would benefit my audience. Every piece of content is created with the same honesty and transparency my followers expect from me.</p>
+</div>
+
+<div class="divider"></div>
+
+
+<!-- ═══════════════════ CONTACT -->
+<div class="section-dark">
+  <div class="section-dark-inner">
+    <span class="label">Get in touch</span>
+    <h2>Ready to work together?</h2>
+    <p>Reach out directly and I&#8217;ll get back to you within 48 hours.</p>
+    <div class="contact-block">
+      <p>Email for brand inquiries</p>
+      <a href="mailto:downtoinvest@outlook.com">downtoinvest@outlook.com</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════ FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-mark">down<em>to</em>invest</div>
+    <p class="footer-tagline">Financial literacy for everyone. Built by Mallory Warren, CFP&#174;.</p>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="investing-guide.html">Investing Guide</a>
+      <a href="etfinsight.html">ETF Insight</a>
+      <a href="https://www.aerden.llc" target="_blank">Aerden LLC</a>
+      <a href="https://www.aerden.llc/privacy.html" target="_blank">Privacy</a>
+    </div>
+    <p class="footer-legal">
+      &#169; 2026 downtoinvest. Advisory services provided by Aerden LLC. CFP&#174; and CERTIFIED FINANCIAL PLANNER&#8482; are certification marks owned by the Certified Financial Planner Board of Standards, Inc. Rates effective 2026. All packages subject to availability. Prices in USD.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

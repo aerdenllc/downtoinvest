@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>downtoinvest | Think Richer&#8482;</title>
+  <meta name="description" content="Financial literacy for everyone. Investing guides, portfolio analysis, and advice-only CFP&#174; planning, built by someone who left Wall Street to make it accessible." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Design Tokens ─────────────────────────────── */
+    :root {
+      --bg:        #f5f0e8;
+      --white:     #ffffff;
+      --dark:      #1a1a1a;
+      --red:       #c8281e;
+      --red-dark:  #a01e16;
+      --red-light: #faecea;
+      --cream-mid: #ede5d8;
+      --text:      #1a1a1a;
+      --muted:     #7a6f64;
+      --border:    #e2d9cc;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; }
+
+    h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(2.2rem, 9vw, 3rem);
+      line-height: 1.0;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+    }
+    h2 {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(1.4rem, 5vw, 1.9rem);
+      line-height: 1.05;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .wrap { max-width: 480px; margin: 0 auto; padding: 0 22px; }
+    .divider { height: 1px; background: var(--border); }
+
+    .label {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 10px;
+    }
+
+    /* ─── Nav ──────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--dark);
+      padding: 14px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .wordmark {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+    .wordmark em { color: var(--red); font-style: normal; }
+    .nav-right { display: flex; align-items: center; gap: 14px; }
+    .nav-link {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      transition: color 0.18s;
+    }
+    .nav-link:hover { color: rgba(255,255,255,0.8); }
+    .btn-nav {
+      background: var(--red);
+      color: #fff;
+      padding: 8px 16px;
+      font-size: 0.72rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      border: none;
+      transition: background 0.18s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn-nav:hover { background: var(--red-dark); }
+
+    /* ─── Hero ─────────────────────────────────────── */
+    .hero {
+      background: var(--red);
+      padding: 48px 22px 44px;
+    }
+    .hero-inner { max-width: 480px; margin: 0 auto; }
+    .hero-eyebrow {
+      color: rgba(255,255,255,0.55);
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 14px;
+      display: block;
+    }
+    .hero h1 { color: #fff; margin-bottom: 14px; }
+    .hero p {
+      color: rgba(255,255,255,0.68);
+      font-size: 0.95rem;
+      line-height: 1.65;
+      margin-bottom: 22px;
+      max-width: 360px;
+    }
+    .hero-path-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-family: 'Inter', sans-serif;
+      padding: 0;
+      transition: color 0.18s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .hero-path-link:hover { color: #fff; }
+    .hero-path-link span { text-decoration: underline; text-underline-offset: 3px; }
+
+    /* ─── Link Sections ────────────────────────────── */
+    .links-wrap {
+      background: var(--bg);
+      padding-bottom: 8px;
+    }
+    .link-section {
+      padding: 30px 22px 0;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .link-section.last { padding-bottom: 40px; }
+    .section-head {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 10px;
+    }
+    .link-rows { display: flex; flex-direction: column; gap: 2px; }
+    .link-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--white);
+      padding: 14px 16px;
+      text-decoration: none;
+      color: var(--text);
+      border: none;
+      width: 100%;
+      text-align: left;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.18s;
+      -webkit-tap-highlight-color: transparent;
+      cursor: pointer;
+    }
+    .link-row:hover { background: var(--cream-mid); }
+    .link-icon {
+      width: 38px;
+      height: 38px;
+      background: var(--red-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.05rem;
+      flex-shrink: 0;
+    }
+    .link-text { flex: 1; min-width: 0; }
+    .link-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+      display: block;
+    }
+    .link-sub {
+      font-size: 0.76rem;
+      color: var(--muted);
+      line-height: 1.35;
+      display: block;
+      margin-top: 1px;
+    }
+    .link-pill {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      flex-shrink: 0;
+    }
+    .link-pill-red { background: var(--red); color: #fff; }
+    .link-pill-dark { background: var(--dark); color: #fff; }
+    .link-pill-outline { border: 1px solid var(--border); color: var(--muted); }
+    .link-arrow {
+      color: var(--red);
+      font-size: 1.15rem;
+      flex-shrink: 0;
+    }
+
+    /* ─── Stats Strip ──────────────────────────────── */
+    .stats-strip {
+      padding: 32px 22px 36px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      margin-top: 14px;
+    }
+    .stat-box {
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 14px 8px;
+      text-align: center;
+    }
+    .stat-platform { font-size: 1rem; margin-bottom: 5px; }
+    .stat-number {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.1;
+    }
+    .stat-label {
+      font-size: 0.6rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    /* ─── For Brands ───────────────────────────────── */
+    .brands-section {
+      padding: 32px 22px 40px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .brands-note {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 10px 0 18px;
+    }
+    .btn-outline {
+      display: block;
+      text-align: center;
+      border: 1.5px solid var(--red);
+      color: var(--red);
+      padding: 13px 24px;
+      font-size: 0.8rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      transition: background 0.18s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn-outline:hover { background: var(--red-light); }
+
+    /* ─── Waitlist ─────────────────────────────────── */
+    .waitlist-section {
+      background: var(--dark);
+      padding: 52px 22px;
+    }
+    .waitlist-inner { max-width: 480px; margin: 0 auto; }
+    .waitlist-section .label { color: rgba(255,255,255,0.4); }
+    .waitlist-section h2 { color: #fff; margin-bottom: 10px; }
+    .waitlist-section > .waitlist-inner > p {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .waitlist-form { display: flex; flex-direction: column; gap: 10px; }
+    .wl-input {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 13px 18px;
+      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      color: #fff;
+      width: 100%;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .wl-input::placeholder { color: rgba(255,255,255,0.35); }
+    .wl-input:focus { border-color: rgba(255,255,255,0.45); }
+    .btn-wl {
+      background: var(--red);
+      color: #fff;
+      padding: 14px 24px;
+      font-size: 0.82rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.18s;
+    }
+    .btn-wl:hover { background: var(--red-dark); }
+    #wl-success {
+      display: none;
+      text-align: center;
+      padding: 8px 0;
+      color: #fff;
+    }
+
+    /* ─── Footer ───────────────────────────────────── */
+    footer {
+      background: var(--dark);
+      padding: 36px 22px 32px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .footer-inner { max-width: 480px; margin: 0 auto; }
+    .footer-mark {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .footer-mark em { color: var(--red); font-style: normal; }
+    .footer-tagline {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 18px;
+      line-height: 1.55;
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 16px;
+      margin-bottom: 18px;
+    }
+    .footer-links a {
+      font-size: 0.76rem;
+      color: rgba(255,255,255,0.35);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: rgba(255,255,255,0.7); }
+    .footer-legal {
+      font-size: 0.66rem;
+      color: rgba(255,255,255,0.22);
+      line-height: 1.65;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding-top: 16px;
+    }
+
+    /* ─── Welcome Popup ────────────────────────────── */
+    .popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 400;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.28s ease;
+    }
+    .popup-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .popup-sheet {
+      background: var(--white);
+      width: 100%;
+      max-width: 480px;
+      padding: 16px 22px 48px;
+      transform: translateY(110%);
+      transition: transform 0.38s cubic-bezier(0.32, 0.72, 0, 1);
+      max-height: 88vh;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .popup-overlay.open .popup-sheet { transform: translateY(0); }
+    .popup-handle {
+      width: 36px;
+      height: 3px;
+      background: var(--border);
+      margin: 4px auto 22px;
+    }
+    .popup-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+    .popup-sub {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-bottom: 20px;
+      line-height: 1.55;
+    }
+    .popup-opts { display: flex; flex-direction: column; gap: 2px; }
+    .popup-opt {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--bg);
+      border: none;
+      border-left: 3px solid transparent;
+      padding: 15px 16px 15px 18px;
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+      font-family: 'Inter', sans-serif;
+      transition: border-color 0.18s, background 0.18s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .popup-opt:hover { border-left-color: var(--red); background: #ede8df; }
+    .popup-opt-icon { font-size: 1.3rem; flex-shrink: 0; }
+    .popup-opt-text h4 { font-size: 0.88rem; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+    .popup-opt-text p { font-size: 0.76rem; color: var(--muted); line-height: 1.35; }
+    .popup-skip {
+      display: block;
+      text-align: center;
+      margin-top: 18px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: 'Inter', sans-serif;
+      width: 100%;
+      padding: 4px 0;
+      transition: color 0.18s;
+    }
+    .popup-skip:hover { color: var(--text); }
+
+    /* ─── Affiliates ───────────────────────────────── */
+    .affiliate-section {
+      padding: 40px 0;
+      background: var(--white);
+      overflow: hidden;
+    }
+    .affiliate-header {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 0 22px;
+      margin-bottom: 18px;
+    }
+    .affiliate-scroll {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 2px;
+      overflow-x: scroll;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+      padding: 4px 22px 20px;
+      scrollbar-width: none;
+      cursor: grab;
+    }
+    .affiliate-scroll:active { cursor: grabbing; }
+    .affiliate-scroll::-webkit-scrollbar { display: none; }
+    .affiliate-card {
+      scroll-snap-align: start;
+      flex: 0 0 54vw;
+      max-width: 210px;
+      min-width: 160px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 18px 16px;
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: border-color 0.18s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .affiliate-card:hover { border-color: var(--red); }
+    .affiliate-logo {
+      width: 40px;
+      height: 40px;
+      background: var(--red-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+    .affiliate-card h4 { font-size: 0.88rem; font-weight: 600; line-height: 1.3; }
+    .affiliate-card p { font-size: 0.76rem; color: var(--muted); line-height: 1.45; flex-grow: 1; }
+    .affiliate-cta { font-size: 0.74rem; font-weight: 600; color: var(--red); }
+    .affiliate-scroll-hint {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 0 22px;
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    @media (min-width: 520px) {
+      .popup-overlay { align-items: center; padding: 20px; }
+      .popup-sheet { max-height: 80vh; }
+      .affiliate-section { overflow: visible; }
+      .affiliate-scroll {
+        max-width: 480px;
+        margin: 0 auto;
+        overflow-x: auto;
+      }
+      .affiliate-card { flex: 0 0 170px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════ NAV -->
+<nav>
+  <a href="#" class="wordmark">down<em>to</em>invest</a>
+  <div class="nav-right">
+    <a href="#brands" class="nav-link">For Brands</a>
+    <button class="btn-nav" onclick="openPopup()">Find my path &#8594;</button>
+  </div>
+</nav>
+
+
+<!-- ═══════════════════ HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <span class="hero-eyebrow">Financial literacy for everyone</span>
+    <h1>Your income doesn&#8217;t build wealth.<br>Your knowledge does.</h1>
+    <p>Built by Mallory Warren, CFP&#174; — making real financial guidance accessible to everyone.</p>
+    <button class="hero-path-link" onclick="openPopup()">
+      <span>Not sure where to start?</span> &#8594;
+    </button>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+
+<!-- ═══════════════════ LINK SECTIONS -->
+<div class="links-wrap">
+
+  <div class="link-section">
+    <div class="section-head">Start Here</div>
+    <div class="link-rows">
+      <a href="investing-guide.html" class="link-row">
+        <div class="link-icon">&#128200;</div>
+        <div class="link-text">
+          <span class="link-title">The Investing Guide</span>
+          <span class="link-sub">Step-by-step retirement investing for beginners</span>
+        </div>
+        <span class="link-arrow">&#8250;</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="link-section">
+    <div class="section-head">Understand Your Portfolio</div>
+    <div class="link-rows">
+      <a href="etfinsight.html" class="link-row">
+        <div class="link-icon">&#128269;</div>
+        <div class="link-text">
+          <span class="link-title">ETF Insight</span>
+          <span class="link-sub">See what you actually own inside your funds</span>
+        </div>
+        <span class="link-pill link-pill-outline">Tool</span>
+        <span class="link-arrow">&#8250;</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="link-section">
+    <div class="section-head">Work With Me</div>
+    <div class="link-rows">
+      <a href="https://www.aerden.llc" target="_blank" class="link-row">
+        <div class="link-icon">&#129309;</div>
+        <div class="link-text">
+          <span class="link-title">1:1 Financial Planning</span>
+          <span class="link-sub">Advice-only CFP&#174; guidance &middot; Aerden LLC</span>
+        </div>
+        <span class="link-arrow">&#8250;</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="link-section last">
+    <div class="section-head">Coming Soon</div>
+    <div class="link-rows">
+      <button class="link-row" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">
+        <div class="link-icon">&#127891;</div>
+        <div class="link-text">
+          <span class="link-title">The Think Richer&#8482; Course</span>
+          <span class="link-sub">Join the waitlist for early access pricing</span>
+        </div>
+        <span class="link-pill link-pill-outline">Waitlist</span>
+        <span class="link-arrow">&#8250;</span>
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<div class="divider"></div>
+
+
+<!-- ═══════════════════ AFFILIATES -->
+<div class="affiliate-section">
+  <div class="affiliate-header">
+    <span class="label">Products &amp; Partners</span>
+    <h2 style="font-size:1.3rem; margin-bottom:6px;">Things worth checking out.</h2>
+  </div>
+
+  <div class="affiliate-scroll" id="affiliate-scroll">
+    <a href="https://www.amazon.com/shop/downtoinvest" class="affiliate-card" target="_blank">
+      <div class="affiliate-logo">&#128722;</div>
+      <h4>Amazon Storefront</h4>
+      <p>All my favorite finds and recommendations in one place.</p>
+      <span class="affiliate-cta">Shop my picks &#8594;</span>
+    </a>
+    <a href="https://secure.money.com/lp/savings-accounts/lp/best-high-yield-savings-accounts-abm-creator?pcuid=iae7849e52cd&ca_referer=https%3A%2F%2Fstan.store%2F&jump_from_embed=true&wafid=" class="affiliate-card" target="_blank">
+      <div class="affiliate-logo">&#127974;</div>
+      <h4>HYSA Picks for 2026</h4>
+      <p>My top high-yield savings account picks this year.</p>
+      <span class="affiliate-cta">See picks &#8594;</span>
+    </a>
+    <a href="https://tally.so/r/WOAXLN" class="affiliate-card" target="_blank">
+      <div class="affiliate-logo">&#128202;</div>
+      <h4>Submit My ETFs for a Review</h4>
+      <p>Get your portfolio reviewed for educational content.</p>
+      <span class="affiliate-cta">Submit here &#8594;</span>
+    </a>
+    <a href="https://budget.meetmondey.com" class="affiliate-card" target="_blank">
+      <div class="affiliate-logo">&#128187;</div>
+      <h4>Digital Budget Tool</h4>
+      <p>Not a boring spreadsheet.</p>
+      <span class="affiliate-cta">Check it out &#8594;</span>
+    </a>
+    <a href="https://drive.google.com/file/d/1_aTYKmS4h3veItw35FmsY3QMssRjQFoH/view" class="affiliate-card" target="_blank">
+      <div class="affiliate-logo">&#128196;</div>
+      <h4>Disclosures</h4>
+      <p>Important regulatory and affiliate disclosures.</p>
+      <span class="affiliate-cta">Read more &#8594;</span>
+    </a>
+  </div>
+  <p class="affiliate-scroll-hint">&#8592;&#8594; swipe to see more</p>
+</div>
+
+<div class="divider"></div>
+
+
+<!-- ═══════════════════ SOCIAL STATS -->
+<div class="stats-strip">
+  <span class="label">Find me on</span>
+  <div class="stats-row" style="grid-template-columns: repeat(3, 1fr);">
+    <a href="https://www.instagram.com/downtoinvest" target="_blank" class="stat-box" style="text-decoration:none; color:inherit; transition:background 0.18s; display:block;">
+      <div class="stat-platform">&#128247;</div>
+      <div class="stat-number">4.5k</div>
+      <div class="stat-label">Instagram</div>
+    </a>
+    <a href="https://www.tiktok.com/@downtoinvest" target="_blank" class="stat-box" style="text-decoration:none; color:inherit; transition:background 0.18s; display:block;">
+      <div class="stat-platform">&#127926;</div>
+      <div class="stat-number">55.5k</div>
+      <div class="stat-label">TikTok</div>
+    </a>
+    <a href="https://www.youtube.com/@downtoinvest" target="_blank" class="stat-box" style="text-decoration:none; color:inherit; transition:background 0.18s; display:block;">
+      <div class="stat-platform">&#9654;</div>
+      <div class="stat-number" style="font-size:0.7rem; color:var(--muted);">Coming<br>Soon</div>
+      <div class="stat-label">YouTube</div>
+    </a>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+
+<!-- ═══════════════════ FOR BRANDS -->
+<div class="brands-section" id="brands">
+  <span class="label">For Brands &amp; Partnerships</span>
+  <h2>Let&#8217;s work together.</h2>
+  <p class="brands-note">
+    I create content at the intersection of personal finance, investing, and real life for an audience actively working to build wealth. If your product genuinely helps people do that, I&#8217;d love to talk.
+  </p>
+  <a href="brands.html" class="btn-outline">View Media Kit &#8594;</a>
+</div>
+
+<div class="divider"></div>
+
+
+<!-- ═══════════════════ WAITLIST -->
+<div class="waitlist-section" id="waitlist">
+  <div class="waitlist-inner">
+    <span class="label">Coming Soon</span>
+    <h2>The Think Richer&#8482; Course</h2>
+    <p>A complete financial literacy framework covering investing, personal finance, and intentional spending. Join the waitlist for early access pricing.</p>
+
+    <form class="waitlist-form" id="wl-form" onsubmit="handleWaitlist(event)">
+      <input type="text"  class="wl-input" id="wl-name"  placeholder="First name" required />
+      <input type="email" class="wl-input" id="wl-email" placeholder="Email address" required />
+      <button type="submit" class="btn-wl">Join the Waitlist &#8594;</button>
+    </form>
+
+    <div id="wl-success">
+      <p style="font-size:1.3rem; margin-bottom:8px;">&#127881;</p>
+      <p><strong id="wl-success-name"></strong>, you&#8217;re on the list!</p>
+      <p style="font-size:0.82rem; opacity:0.55; margin-top:6px;">We&#8217;ll let you know the moment it&#8217;s ready.</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════ FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-mark">down<em>to</em>invest</div>
+    <p class="footer-tagline">Financial literacy for everyone.<br>Built by Mallory Warren, CFP&#174;, who left Wall Street to prove it&#8217;s possible.</p>
+    <div class="footer-links">
+      <a href="etfinsight.html">ETF Insight</a>
+      <a href="https://www.aerden.llc" target="_blank">Aerden LLC</a>
+      <a href="brands.html">For Brands</a>
+      <a href="https://www.aerden.llc/privacy.html" target="_blank">Privacy</a>
+      <a href="https://www.aerden.llc/terms.html" target="_blank">Terms</a>
+    </div>
+    <p class="footer-legal">
+      &#169; 2026 downtoinvest. Advisory services provided by Aerden LLC.
+      CFP&#174; and CERTIFIED FINANCIAL PLANNER&#8482; are certification marks owned by the Certified Financial Planner Board of Standards, Inc.
+    </p>
+    <p class="footer-legal" style="margin-top:10px; padding-top:10px; border-top:1px solid rgba(255,255,255,0.06);">
+      <strong style="color:rgba(255,255,255,0.38);">Disclaimer:</strong> All information provided through this website is for educational use only and is not financial advice. Nothing on this site should be construed as a recommendation to buy or sell any security, or as personalized investment, tax, or legal advice. Always consult a qualified professional before making financial decisions.
+    </p>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════ WELCOME POPUP -->
+<div class="popup-overlay" id="popup-overlay" onclick="handlePopupBgClick(event)">
+  <div class="popup-sheet" id="popup-sheet">
+    <div class="popup-handle"></div>
+    <p class="popup-title">Everyone&#8217;s path looks different.</p>
+    <p class="popup-sub">Pick the one that feels most like you. I&#8217;ll point you in the right direction.</p>
+    <div class="popup-opts">
+      <button class="popup-opt" onclick="routeTo('investing-guide.html')">
+        <span class="popup-opt-icon">&#128200;</span>
+        <div class="popup-opt-text">
+          <h4>I&#8217;m brand new to investing</h4>
+          <p>Want to start but keep feeling overwhelmed</p>
+        </div>
+      </button>
+      <button class="popup-opt" onclick="routeTo('etfinsight.html')">
+        <span class="popup-opt-icon">&#128269;</span>
+        <div class="popup-opt-text">
+          <h4>I invest but feel lost</h4>
+          <p>Not sure what I own or if I&#8217;m doing it right</p>
+        </div>
+      </button>
+      <button class="popup-opt" onclick="routeTo('https://www.aerden.llc', true)">
+        <span class="popup-opt-icon">&#129309;</span>
+        <div class="popup-opt-text">
+          <h4>I want professional guidance</h4>
+          <p>Ready to work with a real CFP&#174;, one-on-one</p>
+        </div>
+      </button>
+      <button class="popup-opt" onclick="scrollToWaitlist()">
+        <span class="popup-opt-icon">&#127891;</span>
+        <div class="popup-opt-text">
+          <h4>I want to learn everything</h4>
+          <p>Give me a complete framework from scratch</p>
+        </div>
+      </button>
+    </div>
+    <button class="popup-skip" onclick="closePopup()">I know what I&#8217;m looking for &#8595;</button>
+  </div>
+</div>
+
+
+<!-- ═══════════════════ SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+<script>
+  /* ── Popup ── */
+  function openPopup() {
+    document.getElementById('popup-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closePopup() {
+    document.getElementById('popup-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+    try { sessionStorage.setItem('dti_welcomed', '1'); } catch(e) {}
+  }
+  function handlePopupBgClick(e) {
+    if (e.target === document.getElementById('popup-overlay')) closePopup();
+  }
+  function routeTo(url, newTab) {
+    closePopup();
+    setTimeout(function() {
+      if (newTab) { window.open(url, '_blank'); } else { window.location.href = url; }
+    }, 80);
+  }
+  function scrollToWaitlist() {
+    closePopup();
+    setTimeout(function() {
+      document.getElementById('waitlist').scrollIntoView({ behavior: 'smooth' });
+    }, 320);
+  }
+
+  /* Auto-open on first visit this session */
+  window.addEventListener('load', function() {
+    var seen = false;
+    try { seen = sessionStorage.getItem('dti_welcomed'); } catch(e) {}
+    if (!seen) { setTimeout(openPopup, 700); }
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closePopup();
+  });
+
+  /* ── Confetti ── */
+  function fireConfetti() {
+    confetti({
+      particleCount: 140, spread: 85, origin: { y: 0.55 },
+      colors: ['#c8281e', '#f5b8b5', '#f5f0e8', '#1a1a1a', '#fff'],
+      scalar: 1.15, ticks: 220
+    });
+    setTimeout(function() {
+      confetti({ particleCount: 60, spread: 55, origin: { y: 0.65 },
+        colors: ['#c8281e', '#faecea', '#fff'], scalar: 0.9 });
+    }, 300);
+  }
+
+  /* ── Waitlist ── */
+  function handleWaitlist(e) {
+    e.preventDefault();
+    var name = document.getElementById('wl-name').value.trim();
+    var email = document.getElementById('wl-email').value.trim();
+    var firstName = name.split(' ')[0];
+
+    /* Send to Kit in the background */
+    var formData = new FormData();
+    formData.append('fields[first_name]', name);
+    formData.append('email_address', email);
+    fetch('https://app.kit.com/forms/9454398/subscriptions', {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    }).catch(function() {}); /* silent fail — doesn't affect the user experience */
+
+    /* Show success immediately */
+    document.getElementById('wl-form').style.display = 'none';
+    document.getElementById('wl-success-name').textContent = firstName;
+    document.getElementById('wl-success').style.display = 'block';
+    fireConfetti();
+  }
+</script>
+
+</body>
+</html>
