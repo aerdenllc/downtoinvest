@@ -16,7 +16,8 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         api_key: process.env.KIT_API_KEY,
         email: email,
-        first_name: name || ''
+        first_name: name || '',
+        tags: [19650419]
       })
     });
 
