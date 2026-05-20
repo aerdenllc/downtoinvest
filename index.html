@@ -214,7 +214,20 @@
 
   </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
   <script>
+    function celebrateWaitlist() {
+      if (typeof confetti !== 'function') return;
+      var palette = ['#E63946', '#F5B8B5', '#F6EFD9', '#1A1817', '#FFFFFF'];
+      confetti({ particleCount: 150, spread: 95, origin: { y: 0.7 }, colors: palette, scalar: 1.1, ticks: 250 });
+      setTimeout(function () {
+        confetti({ particleCount: 80, angle: 60, spread: 70, origin: { x: 0, y: 0.8 }, colors: palette });
+      }, 150);
+      setTimeout(function () {
+        confetti({ particleCount: 80, angle: 120, spread: 70, origin: { x: 1, y: 0.8 }, colors: palette });
+      }, 300);
+    }
+
     (function () {
       var form = document.getElementById('waitlist-form');
       var msg  = document.getElementById('waitlist-msg');
@@ -250,10 +263,11 @@
         })
         .then(function () {
           msg.className = 'waitlist-msg success';
-          msg.textContent = "You're on the list. I'll email when it's ready.";
+          msg.textContent = "You're in! First access and the best price it'll ever be, the second it drops.";
           form.reset();
           btn.disabled = false;
           btn.textContent = 'Join the waitlist →';
+          celebrateWaitlist();
         })
         .catch(function () {
           msg.className = 'waitlist-msg error';
