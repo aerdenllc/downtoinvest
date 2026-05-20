@@ -2,916 +2,180 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>The Investing Guide | downtoinvest</title>
   <meta name="description" content="A simple, step-by-step beginner plan for setting up your retirement investments. No jargon. Just clear instructions and copy-paste ETF lineups you can follow today." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-  <style>
-    :root {
-      --bg:         #f5f0e8;
-      --white:      #ffffff;
-      --dark:       #1a1a1a;
-      --red:        #c8281e;
-      --red-dark:   #a01e16;
-      --red-light:  #faecea;
-      --cream-mid:  #ede5d8;
-      --text:       #1a1a1a;
-      --muted:      #7a6f64;
-      --border:     #e2d9cc;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Inter', sans-serif;
-      font-size: 16px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-    a { color: inherit; text-decoration: none; }
-    button { cursor: pointer; }
-
-    h1 {
-      font-family: 'Oswald', sans-serif;
-      font-size: clamp(2.2rem, 9vw, 3rem);
-      line-height: 1.0;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-    h2 {
-      font-family: 'Oswald', sans-serif;
-      font-size: clamp(1.5rem, 6vw, 2rem);
-      line-height: 1.05;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-    h3 { font-size: 1rem; font-weight: 600; line-height: 1.3; }
-
-    .wrap { max-width: 480px; margin: 0 auto; padding: 0 22px; }
-    .divider { height: 1px; background: var(--border); }
-
-    .label {
-      display: inline-block;
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--red);
-      margin-bottom: 10px;
-    }
-
-    /* ─── Nav ─── */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: var(--dark);
-      padding: 14px 22px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .wordmark {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.1rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: #fff;
-    }
-    .wordmark em { color: var(--red); font-style: normal; }
-    .btn-nav {
-      background: var(--red);
-      color: #fff;
-      padding: 9px 18px;
-      font-size: 0.75rem;
-      font-family: 'Inter', sans-serif;
-      font-weight: 500;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-      border: none;
-      text-decoration: none;
-      display: inline-block;
-      transition: background 0.18s;
-    }
-    .btn-nav:hover { background: var(--red-dark); }
-
-    /* ─── Hero ─── */
-    .hero {
-      background: var(--red);
-      padding: 56px 22px 52px;
-    }
-    .hero-inner { max-width: 480px; margin: 0 auto; }
-    .hero-eyebrow {
-      color: rgba(255,255,255,0.5);
-      font-size: 0.68rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      font-weight: 600;
-      margin-bottom: 16px;
-      display: block;
-    }
-    .hero h1 { color: #fff; margin-bottom: 18px; }
-    .hero-sub {
-      color: rgba(255,255,255,0.72);
-      font-size: 1rem;
-      line-height: 1.7;
-      margin-bottom: 30px;
-      max-width: 400px;
-    }
-    .hero-price-row {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
-    .hero-price {
-      font-family: 'Oswald', sans-serif;
-      font-size: 2rem;
-      font-weight: 700;
-      color: #fff;
-    }
-    .hero-price-note {
-      color: rgba(255,255,255,0.55);
-      font-size: 0.82rem;
-      line-height: 1.4;
-    }
-    .btn-hero {
-      display: block;
-      background: #fff;
-      color: var(--red);
-      padding: 16px 28px;
-      font-size: 0.85rem;
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      border: none;
-      text-align: center;
-      transition: background 0.18s;
-      width: 100%;
-      max-width: 360px;
-    }
-    .btn-hero:hover { background: var(--bg); }
-    .hero-trust {
-      margin-top: 20px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: rgba(255,255,255,0.45);
-      font-size: 0.75rem;
-    }
-    .social-proof-dot {
-      width: 6px;
-      height: 6px;
-      background: rgba(255,255,255,0.6);
-      border-radius: 50%;
-      flex-shrink: 0;
-      animation: pulse 2s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.8); }
-    }
-
-    /* ─── Sections ─── */
-    .section {
-      padding: 52px 22px;
-      max-width: 480px;
-      margin: 0 auto;
-    }
-    .section-white {
-      background: var(--white);
-      padding: 52px 0;
-    }
-    .section-white .wrap { max-width: 480px; margin: 0 auto; padding: 0 22px; }
-    .section-dark {
-      background: var(--dark);
-      padding: 56px 22px;
-    }
-    .section-dark-inner { max-width: 480px; margin: 0 auto; }
-
-    /* ─── Loop ─── */
-    .loop-list {
-      margin-top: 26px;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .loop-item {
-      background: var(--bg);
-      padding: 16px 18px 16px 52px;
-      position: relative;
-    }
-    .loop-num {
-      position: absolute;
-      left: 16px;
-      top: 16px;
-      width: 22px;
-      height: 22px;
-      background: var(--red);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.65rem;
-      font-weight: 700;
-      font-family: 'Oswald', sans-serif;
-    }
-    .loop-item p { font-size: 0.9rem; line-height: 1.55; color: var(--muted); }
-    .loop-item p em { font-style: italic; color: var(--text); font-weight: 500; }
-    .loop-repeat {
-      margin-top: 18px;
-      color: var(--muted);
-      font-size: 0.82rem;
-      font-style: italic;
-    }
-
-    /* ─── Callout ─── */
-    .callout {
-      background: var(--red);
-      padding: 22px;
-      margin: 28px 0;
-    }
-    .callout p {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.35rem;
-      line-height: 1.2;
-      color: #fff;
-      text-transform: uppercase;
-      font-weight: 700;
-    }
-
-    /* ─── What it is ─── */
-    .what-grid {
-      margin-top: 26px;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .what-item {
-      background: var(--white);
-      padding: 18px 20px;
-      border-left: 3px solid var(--red);
-    }
-    .what-item h3 {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1rem;
-      text-transform: uppercase;
-      font-weight: 700;
-      margin-bottom: 5px;
-      letter-spacing: 0.03em;
-    }
-    .what-item p { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
-
-    /* ─── What's inside ─── */
-    .inside-list {
-      margin-top: 26px;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .inside-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      background: var(--bg);
-      padding: 16px 18px;
-    }
-    .inside-check {
-      width: 22px;
-      height: 22px;
-      background: var(--red);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.7rem;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-    .inside-item h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 3px; }
-    .inside-item p { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
-    .bonus-tag {
-      display: inline-block;
-      background: var(--dark);
-      color: #fff;
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 2px 7px;
-      margin-left: 7px;
-      vertical-align: middle;
-    }
-
-    /* ─── Testimonials ─── */
-    .testimonial-grid {
-      margin-top: 26px;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .testimonial-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      padding: 22px;
-    }
-    .testimonial-stars {
-      color: var(--red);
-      font-size: 0.85rem;
-      letter-spacing: 2px;
-      margin-bottom: 10px;
-    }
-    .testimonial-quote {
-      font-size: 0.9rem;
-      line-height: 1.7;
-      color: var(--text);
-      margin-bottom: 14px;
-      font-style: italic;
-    }
-    .testimonial-author {
-      font-size: 0.76rem;
-      font-weight: 600;
-      color: var(--muted);
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-    .testimonial-placeholder {
-      background: var(--cream-mid);
-      border: 1px dashed var(--border);
-      padding: 22px;
-      text-align: center;
-    }
-    .testimonial-placeholder p {
-      font-size: 0.8rem;
-      color: var(--muted);
-      font-style: italic;
-    }
-
-    /* ─── Pricing ─── */
-    .pricing-card {
-      background: var(--white);
-      border: 2px solid var(--dark);
-      padding: 28px 24px;
-      margin-top: 26px;
-    }
-    .pricing-label {
-      font-size: 0.66rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--red);
-      margin-bottom: 10px;
-    }
-    .pricing-name {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.4rem;
-      text-transform: uppercase;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-    .pricing-amount {
-      font-family: 'Oswald', sans-serif;
-      font-size: 2.8rem;
-      font-weight: 700;
-      color: var(--text);
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-    .pricing-note {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 22px;
-      line-height: 1.5;
-    }
-    .pricing-includes {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-bottom: 24px;
-      padding-bottom: 22px;
-      border-bottom: 1px solid var(--border);
-    }
-    .pricing-include-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.875rem;
-    }
-    .pricing-check {
-      width: 18px;
-      height: 18px;
-      background: var(--red);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.6rem;
-      flex-shrink: 0;
-    }
-    .btn-buy {
-      display: block;
-      background: var(--red);
-      color: #fff;
-      padding: 17px 28px;
-      font-size: 0.85rem;
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      border: none;
-      text-align: center;
-      transition: background 0.18s;
-      width: 100%;
-    }
-    .btn-buy:hover { background: var(--red-dark); }
-    .pricing-after {
-      margin-top: 14px;
-      font-size: 0.78rem;
-      color: var(--muted);
-      text-align: center;
-      line-height: 1.6;
-    }
-
-    /* ─── What happens after ─── */
-    .after-steps {
-      margin-top: 26px;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .after-step {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      padding: 16px 18px;
-      background: var(--bg);
-    }
-    .after-num {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--red);
-      line-height: 1;
-      flex-shrink: 0;
-      width: 28px;
-    }
-    .after-step h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 3px; }
-    .after-step p { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
-
-    /* ─── FAQ ─── */
-    .faq-list {
-      margin-top: 26px;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .faq-item {
-      background: var(--white);
-      border: 1px solid var(--border);
-    }
-    .faq-q {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 18px 20px;
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--text);
-      background: none;
-      border: none;
-      width: 100%;
-      text-align: left;
-      font-family: 'Inter', sans-serif;
-    }
-    .faq-q:hover { background: var(--bg); }
-    .faq-icon {
-      color: var(--red);
-      font-size: 1.1rem;
-      flex-shrink: 0;
-      transition: transform 0.2s;
-      line-height: 1;
-    }
-    .faq-item.open .faq-icon { transform: rotate(45deg); }
-    .faq-a {
-      display: none;
-      padding: 0 20px 18px;
-      font-size: 0.875rem;
-      color: var(--muted);
-      line-height: 1.75;
-      border-top: 1px solid var(--border);
-      padding-top: 16px;
-    }
-    .faq-item.open .faq-a { display: block; }
-
-    /* ─── Footer ─── */
-    footer {
-      background: var(--dark);
-      padding: 36px 22px 30px;
-    }
-    .footer-inner { max-width: 480px; margin: 0 auto; }
-    .footer-mark {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: #fff;
-      margin-bottom: 8px;
-    }
-    .footer-mark em { color: var(--red); font-style: normal; }
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px 18px;
-      margin-bottom: 18px;
-    }
-    .footer-links a {
-      font-size: 0.76rem;
-      color: rgba(255,255,255,0.35);
-      transition: color 0.18s;
-    }
-    .footer-links a:hover { color: rgba(255,255,255,0.7); }
-    .footer-legal {
-      font-size: 0.68rem;
-      color: rgba(255,255,255,0.22);
-      line-height: 1.65;
-      border-top: 1px solid rgba(255,255,255,0.07);
-      padding-top: 16px;
-    }
-  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css" />
+  <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
+  <main class="page">
 
-<!-- ═══════════════════════════ NAV -->
-<nav>
-  <a href="index.html" class="wordmark">down<em>to</em>invest</a>
-  <a href="https://buy.stripe.com/7sYcN75L5gEU67ceoK7g402" class="btn-nav">Get the Guide &#8594;</a>
-</nav>
+    <!-- ======================= TOP BAR ======================= -->
+    <header class="topbar">
+      <a href="index.html" class="wordmark">downtoinvest<span class="dot">.</span></a>
+      <a href="https://buy.stripe.com/7sYcN75L5gEU67ceoK7g402" class="pill-cta">Get the guide</a>
+    </header>
 
+    <!-- ======================= HERO ======================= -->
+    <section class="sales-hero" aria-labelledby="sales-heading">
+      <p class="eyebrow">The investing guide</p>
+      <h1 id="sales-heading">
+        Your first investing plan.
+        <span class="marker">Set up by Sunday.</span>
+      </h1>
+      <p class="lede">
+        A step by step guide that walks you through your retirement investments. Plain English. About an hour. No second-guessing.
+      </p>
 
-<!-- ═══════════════════════════ HERO -->
-<div class="hero">
-  <div class="hero-inner">
-    <span class="hero-eyebrow">The Investing Guide</span>
-    <h1>Your first investing plan. Done right. Done today.</h1>
-    <p class="hero-sub">A step-by-step beginner plan for setting up your retirement investments — written in plain English, ready to implement in about an hour.</p>
-    <div class="hero-price-row">
-      <div class="hero-price">$14.50</div>
-      <div class="hero-price-note">One-time purchase.<br>Yours to keep forever.</div>
-    </div>
-    <a href="https://buy.stripe.com/7sYcN75L5gEU67ceoK7g402" class="btn-hero">Get the Guide &#8594;</a>
-    <div class="hero-trust">
-      <div class="social-proof-dot"></div>
-      <span>300+ people have used this to set up their investments</span>
-    </div>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-
-<!-- ═══════════════════════════ THE LOOP -->
-<div class="section-white">
-  <div class="wrap">
-    <span class="label">Sound familiar?</span>
-    <h2>The loop most beginners are stuck in.</h2>
-
-    <div class="loop-list">
-      <div class="loop-item">
-        <div class="loop-num">1</div>
-        <p>You know you should be investing. You just don't know where to start and every resource you find assumes you already do.</p>
-      </div>
-      <div class="loop-item">
-        <div class="loop-num">2</div>
-        <p>You search Reddit, scroll TikTok, ask ChatGPT. You get answers, none of them feel made for <em>your</em> actual situation.</p>
-      </div>
-      <div class="loop-item">
-        <div class="loop-num">3</div>
-        <p>Open a Roth IRA? Pick your own ETFs? Every step leads to five more questions.</p>
-      </div>
-      <div class="loop-item">
-        <div class="loop-num">4</div>
-        <p>You open your account, stare at it, and close it. Again.</p>
-      </div>
-      <div class="loop-item">
-        <div class="loop-num">5</div>
-        <p>Another month goes by. The money that could have been compounding just… sits there.</p>
-      </div>
-    </div>
-
-    <div class="loop-repeat">&#8635;&nbsp; Rinse and repeat.</div>
-
-    <div class="callout" style="margin-top:28px;">
-      <p>Every month you wait is compounding time you can't get back.</p>
-    </div>
-
-    <p style="color:var(--muted); font-size:0.95rem; line-height:1.75; margin-top:0;">
-      This guide exists to end that loop. A plan you follow once and walk away knowing exactly where your money is going.
-    </p>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-
-<!-- ═══════════════════════════ WHAT IT IS -->
-<div class="section">
-  <span class="label">What you get</span>
-  <h2>A plan.</h2>
-  <p style="color:var(--muted); font-size:0.95rem; line-height:1.7; margin-top:10px; margin-bottom:4px;">You don't need more theory. You need to know what to actually do. Here's what this guide gives you:</p>
-
-  <div class="what-grid">
-    <div class="what-item">
-      <h3>A lineup you can copy and paste</h3>
-      <p>Ready-made ETF combinations matched to your age and risk comfort zone. No guessing, no second-guessing.</p>
-    </div>
-    <div class="what-item">
-      <h3>Plain English, start to finish</h3>
-      <p>Every term explained as you go. No jargon, no assumed knowledge. If you're brand new, you're exactly who this was built for.</p>
-    </div>
-    <div class="what-item">
-      <h3>Something you can actually implement</h3>
-      <p>Most people finish this in an evening and have their investments set up by the weekend. That's the whole point.</p>
-    </div>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-
-<!-- ═══════════════════════════ WHAT'S INSIDE -->
-<div class="section-white">
-  <div class="wrap">
-    <span class="label">What's inside</span>
-    <h2>Everything in the guide.</h2>
-
-    <div class="inside-list">
-      <div class="inside-item">
-        <div class="inside-check">&#10003;</div>
+      <div class="product-card">
         <div>
-          <h4>Quick risk quiz</h4>
-          <p>Find your risk comfort zone in minutes. Your results shape everything that follows.</p>
+          <p class="ptitle">One-time, yours forever</p>
+          <div class="price">$14.50</div>
+          <p class="pnote">Instant access · Stripe</p>
         </div>
+        <a href="https://buy.stripe.com/7sYcN75L5gEU67ceoK7g402" class="buy">Get it →</a>
       </div>
-      <div class="inside-item">
-        <div class="inside-check">&#10003;</div>
-        <div>
-          <h4>Age-based investing mixes</h4>
-          <p>Pre-built allocations for ages 20 to 64. Plug in your age, follow the plan.</p>
-        </div>
-      </div>
-      <div class="inside-item">
-        <div class="inside-check">&#10003;</div>
-        <div>
-          <h4>Copy-and-paste ETF lineups</h4>
-          <p>The exact funds to buy in exact dollar amounts, with tickers included. Works with any major brokerage.</p>
-        </div>
-      </div>
-      <div class="inside-item">
-        <div class="inside-check">&#10003;</div>
-        <div>
-          <h4>ETF basics in plain English</h4>
-          <p>What they are, and how to actually buy them step-by-step.</p>
-        </div>
-      </div>
-      <div class="inside-item">
-        <div class="inside-check">&#10003;</div>
-        <div>
-          <h4>Portfolio overlap &amp; gap check <span class="bonus-tag">Bonus</span></h4>
-          <p>A built in page explaining what portfolio overlap is and how to recognize it.
-            Plus a promo code for a free month of ETF Insight Pro. 
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+    </section>
 
-<div class="divider"></div>
+    <!-- ======================= P.S. REAL TALK ======================= -->
+    <section class="ps-block" aria-label="A note from Mallory">
+      <span class="tag">P.S. real talk</span>
+      <p>
+        I priced this at $14.50 on purpose. Less than a takeout salad. The reason this isn't free is because free guides get downloaded and forgotten. A small cost makes you actually open it.
+      </p>
+      <span class="hand">— Mal</span>
+    </section>
 
-
-<!-- ═══════════════════════════ TESTIMONIALS -->
-<div class="section">
-  <span class="label">What people are saying</span>
-  <h2>300+ purchases and counting.</h2>
-
-  <div class="testimonial-grid">
-
-    <!-- Replace these placeholders with real quotes when you have them -->
-    <div class="testimonial-placeholder">
-      <p>&#8220;If you have questions or want to tell me how the guide helped you please reach out!
-        downtoinvest@outlook.com&#8221;</p>
-    </div>
-
-    <!--
-    TEMPLATE — uncomment and fill in when you have real quotes:
-
-    <div class="testimonial-card">
-      <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <p class="testimonial-quote">"Quote goes here. The more specific and real the better — numbers, outcomes, and emotions all land well."</p>
-      <div class="testimonial-author">First Name, Age &amp; Occupation or Just First Name</div>
-    </div>
-    -->
-  </div>
-</div>
-
-<div class="divider"></div>
-
-
-<!-- ═══════════════════════════ PRICING -->
-<div class="section-white">
-  <div class="wrap">
-    <span class="label">Get the guide</span>
-
-
-    <div class="pricing-card">
-      <div class="pricing-label">The Investing Guide</div>
-      <div class="pricing-name">Think Richer&#8482; Starter Plan</div>
-      <div class="pricing-amount">$14.50</div>
-      <p class="pricing-note">One-time purchase. Instant access. Yours to keep and revisit anytime.</p>
-
-      <div class="pricing-includes">
-        <div class="pricing-include-item">
-          <div class="pricing-check">&#10003;</div>
-          <span>Step-by-step beginner investment plan</span>
-        </div>
-        <div class="pricing-include-item">
-          <div class="pricing-check">&#10003;</div>
-          <span>Age-based ETF lineups (ages 20–64)</span>
-        </div>
-        <div class="pricing-include-item">
-          <div class="pricing-check">&#10003;</div>
-          <span>Copy-and-paste fund lineups</span>
-        </div>
-        <div class="pricing-include-item">
-          <div class="pricing-check">&#10003;</div>
-          <span>Risk quiz to personalize your lineup</span>
-        </div>
-        <div class="pricing-include-item">
-          <div class="pricing-check">&#10003;</div>
-          <span>Bonus: Overlap check + 1 free month of ETF Insight</span>
-        </div>
-      </div>
-
-      <a href="https://buy.stripe.com/7sYcN75L5gEU67ceoK7g402" class="btn-buy">Get Instant Access &#8594;</a>
-      <p class="pricing-after">Secure checkout via Stripe. Delivered to your inbox immediately.</p>
-    </div>
-
-    <!-- What happens after you buy -->
-    <div style="margin-top:36px;">
-      <span class="label">What happens next</span>
-      <h2 style="margin-bottom:0;">After you buy.</h2>
-      <div class="after-steps" style="margin-top:20px;">
-        <div class="after-step">
-          <div class="after-num">1</div>
-          <div>
-            <h4>Instant access</h4>
-            <p>You'll get an email with your download link right away.</p>
+    <!-- ======================= ANNOTATED — WHAT'S INSIDE ======================= -->
+    <section class="annotated" aria-labelledby="annotated-heading">
+      <h2 id="annotated-heading">What's <span class="red">inside.</span></h2>
+      <div class="annotated-grid">
+        <div class="annotated-col">
+          <div class="annotated-label right">
+            Risk quiz<br/>takes 3 min
+            <span class="dot"></span>
+          </div>
+          <div class="annotated-label right">
+            Diversified ETF<br/>portfolios + %s
+            <span class="dot"></span>
           </div>
         </div>
-        <div class="after-step">
-          <div class="after-num">2</div>
-          <div>
-            <h4>Start at the beginning</h4>
-            <p>The guide walks you through everything in order. Take the risk quiz, find your age group, pick your lineup. 
-              You also can pick from any of the portfolio lineups it doesn't need to be associated with your age. That's up to you.</p>
-          </div>
+
+        <div class="annotated-product">
+          <div class="tag">The guide</div>
+          <div class="name">Your first<br/>plan.</div>
+          <div class="pp">$14.50</div>
         </div>
-        <div class="after-step">
-          <div class="after-num">3</div>
-          <div>
-            <h4>Set it up</h4>
-            <p>Log in to your brokerage, follow the steps. Most people are done in an evening.</p>
+
+        <div class="annotated-col">
+          <div class="annotated-label left">
+            <span class="dot"></span>
+            Brokerage<br/>setup steps
           </div>
-        </div>
-        <div class="after-step">
-          <div class="after-num">4</div>
-          <div>
-            <h4>Keep it, revisit it</h4>
-            <p>The guide is yours forever. Bookmark it, share it with a partner, come back when you want a portfolio check-in.</p>
+          <div class="annotated-label left">
+            <span class="dot"></span>
+            Bonus: 1 mo<br/>ETF Insight Pro
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+    </section>
 
-<div class="divider"></div>
+    <!-- ======================= PAIN ======================= -->
+    <section class="pain-block" aria-labelledby="pain-heading">
+      <p class="eyebrow">If this sounds familiar</p>
+      <h2 id="pain-heading">You're stuck in the loop.</h2>
+      <div class="pain-line"><span class="n">01</span><span>You know you should be investing. You just don't know where to start.</span></div>
+      <div class="pain-line"><span class="n">02</span><span>Every guide assumes you already get it.</span></div>
+      <div class="pain-line"><span class="n">03</span><span>You open the brokerage, stare, close it.</span></div>
+      <div class="pain-line"><span class="n">04</span><span>Your money's been sitting in cash for months. Maybe longer.</span></div>
+    </section>
 
+    <!-- ======================= BIG TAGLINE ======================= -->
+    <section class="tag-block">
+      <h2>One read. One evening.<br/><span class="red">Done.</span></h2>
+    </section>
 
-<!-- ═══════════════════════════ FAQ -->
-<div class="section">
-  <span class="label">Questions</span>
-  <h2>The things people ask before buying.</h2>
+    <!-- ======================= SOCIAL PROOF + INVITATION ======================= -->
+    <section class="testi-block" aria-labelledby="testi-heading">
+      <h2 id="testi-heading">300+ people have used this <span class="red">to set up their investments.</span></h2>
+      <p style="font-size: 14px; line-height: 1.65; color: var(--ink-muted); margin: 0;">
+        If this guide helped you, I'd love to hear about it. Send me a note at <a href="mailto:downtoinvest@outlook.com" style="text-decoration: underline; font-weight: 700; color: var(--red);">downtoinvest@outlook.com</a>.
+      </p>
+    </section>
 
-  <div class="faq-list">
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        Do I need to know anything about investing before buying this?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-a">
-        No. This guide was built for people who are starting from zero. Every concept is explained as you go, in plain English.
+    <!-- ======================= THE MATH ======================= -->
+    <section class="math-block" aria-labelledby="math-heading">
+      <h2 id="math-heading">The math.</h2>
+      <div class="math-row hit">
+        <span>This guide</span>
+        <span class="v">$14.50</span>
       </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        What if I already have an IRA set up?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-a">
-        Great — you're ahead of the curve. The guide covers what to do if you already have accounts open, including how to check whether what you're currently invested in actually makes sense for your age and goals. The bonus overlap check page is especially useful for this.
+      <div class="math-row">
+        <span>One hour with an advisor</span>
+        <span class="v">$250 to $400</span>
       </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        Will this work with my brokerage (Fidelity, Vanguard, Schwab, etc.)?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-a">
-        Yes. The ETF lineups in this guide use funds available at all major brokerages. Whether you're at Fidelity, Vanguard, Schwab, or somewhere else, you'll be able to follow the plan.
-        You can also feel free to swap in something similar if you prefer. 
+      <div class="math-row">
+        <span>Robo-advisor (1 yr, $10K)</span>
+        <span class="v">$25 to $50</span>
       </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        Is this financial advice?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-a">
-        This guide is for educational purposes. It gives you a general framework and example lineups — not personalized financial advice. If you want advice tailored specifically to your situation, check out the 1:1 CFP® planning through <a href="https://www.aerden.llc" target="_blank" style="color:var(--red); text-decoration:underline;">Aerden LLC</a>.
+      <div class="math-row">
+        <span>Doing it alone</span>
+        <span class="v">Six more months</span>
       </div>
-    </div>
+    </section>
 
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        What if I have more questions after going through it?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-a">
-        You can also check out <a href="https://etfinsight.org" target="_blank" style="color:var(--red); text-decoration:underline;">ETF Insight</a> — a tool with a built-in AI assistant that can help you analyze your portfolio once you've set it up. And if you want a real human in your corner, <a href="https://www.aerden.llc" target="_blank" style="color:var(--red); text-decoration:underline;">Aerden LLC</a> is always there.
-      </div>
-    </div>
-  </div>
-</div>
+    <!-- ======================= FAQ ======================= -->
+    <section class="faq-block" aria-labelledby="faq-heading">
+      <h2 id="faq-heading">Before you buy.</h2>
 
-<div class="divider"></div>
+      <details class="faq-card" open>
+        <summary class="faq-q">
+          <span>Do I need to know anything first?</span>
+          <span class="plus">+</span>
+        </summary>
+        <p class="faq-a">No. Built for zero starting knowledge. I made sure things were explained in their most simple form. </p>
+      </details>
 
+      <details class="faq-card">
+        <summary class="faq-q">
+          <span>I already have an IRA. Useful?</span>
+          <span class="plus">+</span>
+        </summary>
+        <p class="faq-a">Yes. You can use it to check whether how you're currently invested matches your risk tolerance and age bracket. It's also a solid source of portfolio ideas if you want to make changes.</p>
+      </details>
 
-<!-- ═══════════════════════════ BOTTOM CTA -->
-<div class="section-dark">
-  <div class="section-dark-inner">
-    <span class="label" style="color:rgba(255,255,255,0.4);">Ready?</span>
-    <h2 style="color:#fff; margin-bottom:14px;">Stop putting it off. Start tonight.</h2>
-    <p style="color:rgba(255,255,255,0.6); font-size:0.95rem; line-height:1.7; margin-bottom:28px;">$14.50. Instant access. The investing plan you've been meaning to set up for months — done by the weekend.</p>
-    <a href="https://buy.stripe.com/7sYcN75L5gEU67ceoK7g402" class="btn-buy" style="max-width:360px;">Get the Investing Guide &#8594;</a>
-    <p style="color:rgba(255,255,255,0.3); font-size:0.76rem; margin-top:14px; text-align:center;">Secure checkout via Stripe &middot; Delivered instantly</p>
-  </div>
-</div>
+      <details class="faq-card">
+        <summary class="faq-q">
+          <span>Works with my brokerage?</span>
+          <span class="plus">+</span>
+        </summary>
+        <p class="faq-a">Yes. The guide uses ETFs that any major US brokerage carries. Fidelity, Vanguard, Schwab, and most others all work.</p>
+      </details>
 
+      <details class="faq-card">
+        <summary class="faq-q">
+          <span>Is this financial advice?</span>
+          <span class="plus">+</span>
+        </summary>
+        <p class="faq-a">No, it's education. For something built around your situation, see <a href="https://www.aerdenplanning.com" style="text-decoration: underline;">1:1 planning</a>.</p>
+      </details>
+    </section>
 
-<!-- ═══════════════════════════ FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-mark">down<em>to</em>invest</div>
-    <div class="footer-links">
-      <a href="index.html">Home</a>
-      <a href="https://etfinsight.org" target="_blank">ETF Insight</a>
-      <a href="https://www.aerden.llc" target="_blank">Aerden LLC</a>
-      <a href="https://www.aerden.llc/privacy.html" target="_blank">Privacy</a>
-      <a href="https://www.aerden.llc/terms.html" target="_blank">Terms</a>
-    </div>
-    <p class="footer-legal">
-      &copy; 2026 downtoinvest. Advisory services provided by Aerden LLC. CFP&reg; and CERTIFIED FINANCIAL PLANNER&trade; are certification marks owned by the Certified Financial Planner Board of Standards, Inc.
-    </p>
-    <p class="footer-legal" style="margin-top:10px; padding-top:10px; border-top:1px solid rgba(255,255,255,0.06);">
-      <strong style="color:rgba(255,255,255,0.3);">Disclaimer:</strong> All information is for educational purposes only and is not financial advice. Nothing on this site should be construed as a recommendation to buy or sell any security, or as personalized investment, tax, or legal advice. Always consult a qualified professional before making financial decisions.
-    </p>
-  </div>
-</footer>
+    <!-- ======================= CLOSE ======================= -->
+    <section class="close-block">
+      <h2>Stop putting it off.<br/><span class="swap">Start tonight.</span></h2>
+      <p>$14.50 · Done by the weekend</p>
+      <a href="https://buy.stripe.com/7sYcN75L5gEU67ceoK7g402" class="close-cta">Get the guide →</a>
+    </section>
 
+    <!-- ======================= FOOTER ======================= -->
+    <footer class="dark-foot">
+      © 2026 downtoinvest · Advisory by <a href="https://www.aerdenplanning.com">Aerden LLC</a> · For education only.<br/>
+      CFP® and CERTIFIED FINANCIAL PLANNER™ are certification marks owned by the CFP Board.
+    </footer>
 
-<!-- ═══════════════════════════ SCRIPTS -->
-<script>
-  function toggleFaq(btn) {
-    const item = btn.closest('.faq-item');
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
-  }
-</script>
-
+  </main>
 </body>
 </html>

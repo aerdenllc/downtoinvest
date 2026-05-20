@@ -2,415 +2,168 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-  <title>You're in! — downtoinvest</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>You're in! · downtoinvest</title>
   <meta name="robots" content="noindex, nofollow" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-  <style>
-    :root {
-      --bg:        #f5f0e8;
-      --white:     #ffffff;
-      --dark:      #1a1a1a;
-      --red:       #c8281e;
-      --red-dark:  #a01e16;
-      --red-light: #faecea;
-      --cream-mid: #ede5d8;
-      --text:      #1a1a1a;
-      --muted:     #7a6f64;
-      --border:    #e2d9cc;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Inter', sans-serif;
-      font-size: 16px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    a { color: inherit; text-decoration: none; }
-
-    /* ─── Nav ─── */
-    nav {
-      background: var(--dark);
-      padding: 14px 22px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .wordmark {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.1rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: #fff;
-    }
-    .wordmark em { color: var(--red); font-style: normal; }
-
-    /* ─── Main ─── */
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 60px 22px;
-    }
-    .success-inner {
-      max-width: 420px;
-      width: 100%;
-    }
-
-    /* ─── Icon ─── */
-    .success-icon {
-      width: 64px;
-      height: 64px;
-      background: var(--red);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.8rem;
-      margin-bottom: 28px;
-    }
-
-    /* ─── Heading ─── */
-    .success-eyebrow {
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--red);
-      margin-bottom: 10px;
-      display: block;
-    }
-    h1 {
-      font-family: 'Oswald', sans-serif;
-      font-size: clamp(2rem, 8vw, 2.6rem);
-      font-weight: 700;
-      text-transform: uppercase;
-      line-height: 1.05;
-      color: var(--text);
-      margin-bottom: 14px;
-    }
-    .success-sub {
-      font-size: 0.95rem;
-      color: var(--muted);
-      line-height: 1.75;
-      margin-bottom: 28px;
-    }
-
-    /* ─── Download button ─── */
-    .btn-download {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      background: var(--red);
-      color: #fff;
-      padding: 18px 28px;
-      font-size: 0.88rem;
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-      width: 100%;
-      margin-bottom: 10px;
-      transition: background 0.18s;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .btn-download:hover { background: var(--red-dark); }
-    .btn-download-icon { font-size: 1.1rem; }
-    .download-note {
-      font-size: 0.76rem;
-      color: var(--muted);
-      text-align: center;
-      margin-bottom: 36px;
-      line-height: 1.5;
-    }
-
-    /* ─── Steps ─── */
-    .steps-label {
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 12px;
-      display: block;
-    }
-    .steps {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      margin-bottom: 32px;
-    }
-    .step {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      background: var(--white);
-      padding: 16px 18px;
-      border: 1px solid var(--border);
-    }
-    .step-num {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--red);
-      line-height: 1;
-      flex-shrink: 0;
-      width: 24px;
-      margin-top: 1px;
-    }
-    .step h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 3px; }
-    .step p { font-size: 0.8rem; color: var(--muted); line-height: 1.55; }
-
-    /* ─── Divider ─── */
-    .divider {
-      height: 1px;
-      background: var(--border);
-      margin: 32px 0;
-    }
-
-    /* ─── More links ─── */
-    .more-label {
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 12px;
-      display: block;
-    }
-    .more-links {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .more-link {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      background: var(--white);
-      padding: 14px 16px;
-      border: 1px solid var(--border);
-      color: var(--text);
-      transition: border-color 0.18s;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .more-link:hover { border-color: var(--red); }
-    .more-link-icon {
-      width: 36px;
-      height: 36px;
-      background: var(--red-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      flex-shrink: 0;
-    }
-    .more-link-text { flex: 1; }
-    .more-link-title { font-size: 0.88rem; font-weight: 600; display: block; }
-    .more-link-sub { font-size: 0.76rem; color: var(--muted); display: block; margin-top: 1px; }
-    .more-link-arrow { color: var(--red); font-size: 1.1rem; flex-shrink: 0; }
-
-    /* ─── Footer ─── */
-    footer {
-      background: var(--dark);
-      padding: 28px 22px;
-      text-align: center;
-    }
-    .footer-mark {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: #fff;
-      margin-bottom: 6px;
-    }
-    .footer-mark em { color: var(--red); font-style: normal; }
-    .footer-legal {
-      font-size: 0.68rem;
-      color: rgba(255,255,255,0.22);
-      line-height: 1.6;
-    }
-  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css" />
+  <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
+  <main class="page">
 
-<!-- ═══ NAV -->
-<nav>
-  <a href="index.html" class="wordmark">down<em>to</em>invest</a>
-</nav>
+    <!-- ======================= TOP BAR ======================= -->
+    <header class="topbar">
+      <a href="index.html" class="wordmark">downtoinvest<span class="dot">.</span></a>
+    </header>
 
+    <!-- ======================= SUCCESS ======================= -->
+    <section class="welcome-main">
+      <div class="welcome-inner">
 
-<!-- ═══ MAIN -->
-<main>
-  <div class="success-inner">
-
-    <div class="success-icon">&#10003;</div>
-
-    <span class="success-eyebrow">Purchase confirmed</span>
-    <h1>You're all set.</h1>
-    <p class="success-sub">
-      Your copy of <strong>The Investing Guide</strong> is ready to download right now. Save it somewhere you'll find it — it's yours to keep forever.
-    </p>
-
-    <!-- ─── DOWNLOAD BUTTON ─── -->
-    <a href="guide-dti-7m4kx.pdf" download="The-Investing-Guide-downtoinvest.pdf" class="btn-download">
-      <span class="btn-download-icon">&#8595;</span>
-      Download The Investing Guide
-    </a>
-    <p class="download-note">PDF &middot; Opens in any browser or PDF reader &middot; Saved to your Downloads folder</p>
-
-    <span class="steps-label">What to do next</span>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div>
-          <h4>Take the risk quiz first</h4>
-          <p>It's the first thing in the guide and it shapes everything that follows. Don't skip it.</p>
+        <div class="success-icon" aria-hidden="true">
+          <i class="ti ti-check"></i>
         </div>
+
+        <p class="welcome-eyebrow">Purchase confirmed</p>
+        <h1>You're all set.</h1>
+        <p class="welcome-sub">
+          Your copy of <strong>The Investing Guide</strong> is ready to download. Save it somewhere you'll find it again. Yours to keep forever.
+        </p>
+
+        <a href="guide-dti-7m4kx.pdf" download="The-Investing-Guide-downtoinvest.pdf" class="btn-download">
+          <i class="ti ti-arrow-down" aria-hidden="true"></i>
+          Download the guide
+        </a>
+        <p class="download-note">PDF · Opens in any browser or PDF reader</p>
+
+        <p class="welcome-eyebrow" style="margin-top: 6px;">What to do next</p>
+
+        <div class="steps">
+          <article class="step-card">
+            <div class="num">1</div>
+            <div>
+              <h4>Take the risk quiz first</h4>
+              <p>It's the first thing in the guide and shapes everything that follows. Don't skip it.</p>
+            </div>
+          </article>
+          <article class="step-card">
+            <div class="num">2</div>
+            <div>
+              <h4>Find your age group, pick your lineup</h4>
+              <p>Pre-built ETF lineups matched to where you are right now. Copy them into your brokerage or pick something similar.</p>
+            </div>
+          </article>
+          <article class="step-card">
+            <div class="num">3</div>
+            <div>
+              <h4>Set it up tonight</h4>
+              <p>Log into your brokerage and follow the steps. Most people are done in an evening.</p>
+            </div>
+          </article>
+          <article class="step-card">
+            <div class="num">4</div>
+            <div>
+              <h4>Come back to it anytime</h4>
+              <p>The guide is yours forever. Bookmark it, share it with a partner, revisit it for a portfolio check-in.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="welcome-divider"></div>
+
+        <p class="welcome-eyebrow">While you're here</p>
+        <nav class="more-links" aria-label="More from downtoinvest">
+          <a href="etfinsight.html" class="more-link">
+            <div class="ico-box"><i class="ti ti-zoom-scan" aria-hidden="true"></i></div>
+            <div class="text">
+              <span class="title">ETF Insight</span>
+              <span class="sub">See what you actually own inside your funds</span>
+            </div>
+            <span class="arr">→</span>
+          </a>
+          <a href="https://www.aerdenplanning.com" target="_blank" rel="noopener" class="more-link">
+            <div class="ico-box"><i class="ti ti-message-circle" aria-hidden="true"></i></div>
+            <div class="text">
+              <span class="title">1:1 financial planning</span>
+              <span class="sub">Advice-only CFP® guidance · Aerden LLC</span>
+            </div>
+            <span class="arr">→</span>
+          </a>
+          <a href="index.html" class="more-link">
+            <div class="ico-box"><i class="ti ti-home" aria-hidden="true"></i></div>
+            <div class="text">
+              <span class="title">Back to downtoinvest</span>
+              <span class="sub">More guides, tools, and resources</span>
+            </div>
+            <span class="arr">→</span>
+          </a>
+        </nav>
+
       </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div>
-          <h4>Find your age group, pick your lineup</h4>
-          <p>Pre-built ETF lineups matched to where you are right now. Copy them straight into your brokerage.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div>
-          <h4>Set it up tonight</h4>
-          <p>Log into your brokerage and follow the steps. Most people are done in an evening.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <div>
-          <h4>Come back to it anytime</h4>
-          <p>The guide is yours forever. Bookmark it, share it with a partner, revisit it when you want a portfolio check-in.</p>
-        </div>
-      </div>
-    </div>
+    </section>
 
-    <div class="divider"></div>
+    <!-- ======================= FOOTER ======================= -->
+    <footer class="dark-foot">
+      © 2026 downtoinvest · Advisory by <a href="https://www.aerdenplanning.com">Aerden LLC</a><br/>
+      All information is for educational purposes only and is not financial advice.
+    </footer>
 
-    <span class="more-label">While you're here</span>
-    <div class="more-links">
-      <a href="https://etfinsight.org" target="_blank" class="more-link">
-        <div class="more-link-icon">&#128269;</div>
-        <div class="more-link-text">
-          <span class="more-link-title">ETF Insight</span>
-          <span class="more-link-sub">See what you actually own inside your funds</span>
-        </div>
-        <span class="more-link-arrow">&#8250;</span>
-      </a>
-      <a href="https://www.aerden.llc" target="_blank" class="more-link">
-        <div class="more-link-icon">&#129309;</div>
-        <div class="more-link-text">
-          <span class="more-link-title">1:1 Financial Planning</span>
-          <span class="more-link-sub">Advice-only CFP&#174; guidance &middot; Aerden LLC</span>
-        </div>
-        <span class="more-link-arrow">&#8250;</span>
-      </a>
-      <a href="index.html" class="more-link">
-        <div class="more-link-icon">&#127968;</div>
-        <div class="more-link-text">
-          <span class="more-link-title">Back to downtoinvest</span>
-          <span class="more-link-sub">More guides, tools, and resources</span>
-        </div>
-        <span class="more-link-arrow">&#8250;</span>
-      </a>
-    </div>
+  </main>
 
-  </div>
-</main>
+  <!-- Confetti on load -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+  <script>
+    window.addEventListener('load', function () {
+      var palette = ['#E63946', '#F5B8B5', '#F6EFD9', '#1A1817', '#FFFFFF'];
 
+      setTimeout(function () {
+        confetti({
+          particleCount: 180,
+          spread: 100,
+          origin: { y: 0.5 },
+          colors: palette,
+          scalar: 1.2,
+          ticks: 260
+        });
+      }, 300);
 
-<!-- ═══ FOOTER -->
-<footer>
-  <div class="footer-mark">down<em>to</em>invest</div>
-  <p class="footer-legal">&#169; 2026 downtoinvest. Advisory services provided by Aerden LLC.<br>
-  All information is for educational purposes only and is not financial advice.</p>
-</footer>
+      setTimeout(function () {
+        confetti({
+          particleCount: 120,
+          angle: 60,
+          spread: 70,
+          origin: { x: 0, y: 0.6 },
+          colors: palette,
+          scalar: 1.1,
+          ticks: 220
+        });
+      }, 550);
 
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
-<script>
-  window.addEventListener('load', function () {
-    // First burst — center explosion
-    setTimeout(function () {
-      confetti({
-        particleCount: 180,
-        spread: 100,
-        origin: { y: 0.5 },
-        colors: ['#c8281e', '#f5b8b5', '#f5f0e8', '#1a1a1a', '#fff'],
-        scalar: 1.2,
-        ticks: 260
-      });
-    }, 300);
+      setTimeout(function () {
+        confetti({
+          particleCount: 120,
+          angle: 120,
+          spread: 70,
+          origin: { x: 1, y: 0.6 },
+          colors: palette,
+          scalar: 1.1,
+          ticks: 220
+        });
+      }, 750);
 
-    // Second burst — left cannon
-    setTimeout(function () {
-      confetti({
-        particleCount: 120,
-        angle: 60,
-        spread: 70,
-        origin: { x: 0, y: 0.6 },
-        colors: ['#c8281e', '#faecea', '#fff', '#f5f0e8'],
-        scalar: 1.1,
-        ticks: 220
-      });
-    }, 550);
-
-    // Third burst — right cannon
-    setTimeout(function () {
-      confetti({
-        particleCount: 120,
-        angle: 120,
-        spread: 70,
-        origin: { x: 1, y: 0.6 },
-        colors: ['#c8281e', '#faecea', '#fff', '#1a1a1a'],
-        scalar: 1.1,
-        ticks: 220
-      });
-    }, 750);
-
-    // Fourth burst — big finale shower from top
-    setTimeout(function () {
-      confetti({
-        particleCount: 200,
-        spread: 140,
-        origin: { y: 0.2 },
-        colors: ['#c8281e', '#f5b8b5', '#f5f0e8', '#fff', '#1a1a1a'],
-        scalar: 1.3,
-        ticks: 300,
-        gravity: 0.8
-      });
-    }, 1100);
-
-    // Fifth burst — little sparkle finish
-    setTimeout(function () {
-      confetti({
-        particleCount: 80,
-        spread: 60,
-        origin: { y: 0.55 },
-        colors: ['#c8281e', '#fff', '#faecea'],
-        scalar: 0.85,
-        ticks: 180
-      });
-    }, 1600);
-  });
-</script>
-
+      setTimeout(function () {
+        confetti({
+          particleCount: 200,
+          spread: 140,
+          origin: { y: 0.2 },
+          colors: palette,
+          scalar: 1.3,
+          ticks: 300,
+          gravity: 0.8
+        });
+      }, 1100);
+    });
+  </script>
 </body>
 </html>

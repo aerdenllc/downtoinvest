@@ -2,783 +2,261 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ETF Insight | downtoinvest</title>
-  <meta name="description" content="Finally see what you actually own. Analyze your portfolio for overlap, concentration, fees, and more — with an AI assistant that explains it all in plain English." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <meta name="description" content="The question every investor asks at 11pm: am I doing this right? ETF Insight is the answer. See what you actually own, in plain English." />
 
-  <style>
-    :root {
-      --bg:         #f5f0e8;
-      --white:      #ffffff;
-      --dark:       #1a1a1a;
-      --red:        #c8281e;
-      --red-dark:   #a01e16;
-      --red-light:  #faecea;
-      --cream-mid:  #ede5d8;
-      --text:       #1a1a1a;
-      --muted:      #7a6f64;
-      --border:     #e2d9cc;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Inter', sans-serif;
-      font-size: 16px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-    a { color: inherit; text-decoration: none; }
-    button { cursor: pointer; }
-
-    h1 {
-      font-family: 'Oswald', sans-serif;
-      font-size: clamp(2.1rem, 9vw, 2.9rem);
-      line-height: 1.0;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-    h2 {
-      font-family: 'Oswald', sans-serif;
-      font-size: clamp(1.5rem, 6vw, 2rem);
-      line-height: 1.05;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-    h3 { font-size: 1rem; font-weight: 600; line-height: 1.3; }
-
-    .wrap { max-width: 480px; margin: 0 auto; padding: 0 22px; }
-    .divider { height: 1px; background: var(--border); }
-    .label {
-      display: inline-block;
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--red);
-      margin-bottom: 10px;
-    }
-
-    /* ─── Nav ─── */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: var(--dark);
-      padding: 14px 22px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .wordmark {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.1rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: #fff;
-    }
-    .wordmark em { color: var(--red); font-style: normal; }
-    .btn-nav {
-      background: var(--red);
-      color: #fff;
-      padding: 9px 18px;
-      font-size: 0.75rem;
-      font-family: 'Inter', sans-serif;
-      font-weight: 500;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-      border: none;
-      text-decoration: none;
-      display: inline-block;
-      transition: background 0.18s;
-    }
-    .btn-nav:hover { background: var(--red-dark); }
-
-    /* ─── Hero ─── */
-    .hero {
-      background: var(--red);
-      padding: 56px 22px 52px;
-    }
-    .hero-inner { max-width: 480px; margin: 0 auto; }
-    .hero-eyebrow {
-      color: rgba(255,255,255,0.5);
-      font-size: 0.68rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      font-weight: 600;
-      margin-bottom: 16px;
-      display: block;
-    }
-    .hero h1 { color: #fff; margin-bottom: 18px; }
-    .hero-sub {
-      color: rgba(255,255,255,0.72);
-      font-size: 1rem;
-      line-height: 1.7;
-      margin-bottom: 32px;
-      max-width: 400px;
-    }
-    .btn-hero {
-      display: block;
-      background: #fff;
-      color: var(--red);
-      padding: 16px 28px;
-      font-size: 0.85rem;
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      border: none;
-      text-align: center;
-      transition: background 0.18s;
-      width: 100%;
-      max-width: 360px;
-      text-decoration: none;
-    }
-    .btn-hero:hover { background: var(--bg); }
-    .hero-note {
-      margin-top: 12px;
-      color: rgba(255,255,255,0.4);
-      font-size: 0.76rem;
-    }
-
-    /* ─── Sections ─── */
-    .section {
-      padding: 52px 22px;
-      max-width: 480px;
-      margin: 0 auto;
-    }
-    .section-white {
-      background: var(--white);
-      padding: 52px 0;
-    }
-    .section-white .wrap { max-width: 480px; margin: 0 auto; padding: 0 22px; }
-    .section-dark {
-      background: var(--dark);
-      padding: 56px 22px;
-    }
-    .section-dark-inner { max-width: 480px; margin: 0 auto; }
-
-    /* ─── Overlap Demo ─── */
-    .overlap-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      padding: 22px;
-      margin-top: 24px;
-    }
-    .overlap-label {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 16px;
-    }
-    .overlap-funds {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 18px;
-      flex-wrap: wrap;
-    }
-    .fund-pill {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      padding: 6px 14px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text);
-      font-family: 'Oswald', sans-serif;
-      letter-spacing: 0.05em;
-    }
-    .fund-pill .fund-amount {
-      color: var(--muted);
-      font-weight: 400;
-      font-size: 0.75rem;
-      margin-left: 4px;
-    }
-    .overlap-bar-wrap { margin-bottom: 6px; }
-    .overlap-bar-label {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 6px;
-      font-size: 0.8rem;
-    }
-    .overlap-bar-label span:first-child { color: var(--muted); }
-    .overlap-bar-label .overlap-pct {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-    }
-    .overlap-pct.bad { color: var(--red); }
-    .overlap-pct.good { color: #2d8655; }
-    .bar-track {
-      height: 10px;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      width: 100%;
-      margin-bottom: 14px;
-    }
-    .bar-fill {
-      height: 100%;
-      background: var(--red);
-    }
-    .bar-fill.good { background: #2d8655; }
-    .overlap-callout {
-      background: var(--red-light);
-      border-left: 3px solid var(--red);
-      padding: 12px 14px;
-      font-size: 0.82rem;
-      color: var(--red-dark);
-      line-height: 1.6;
-      margin-top: 4px;
-    }
-
-    /* ─── Pain Points ─── */
-    .pain-list {
-      margin-top: 26px;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .pain-item {
-      background: var(--white);
-      padding: 16px 18px 16px 18px;
-      border-left: 3px solid var(--border);
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-    }
-    .pain-icon {
-      font-size: 1rem;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-    .pain-item p { font-size: 0.9rem; line-height: 1.6; color: var(--muted); }
-    .pain-item p strong { color: var(--text); }
-
-    /* ─── Feature Cards ─── */
-    .feature-list {
-      margin-top: 26px;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .feature-card {
-      background: var(--bg);
-      padding: 20px 20px 20px 20px;
-      border-left: 3px solid var(--red);
-    }
-    .feature-tag {
-      font-size: 0.64rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--red);
-      margin-bottom: 6px;
-    }
-    .feature-card h3 {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.05rem;
-      text-transform: uppercase;
-      font-weight: 700;
-      margin-bottom: 7px;
-      letter-spacing: 0.02em;
-    }
-    .feature-card p {
-      font-size: 0.875rem;
-      color: var(--muted);
-      line-height: 1.65;
-    }
-    .feature-card p strong { color: var(--text); }
-    .feature-badge {
-      display: inline-block;
-      background: var(--dark);
-      color: #fff;
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 2px 7px;
-      margin-left: 7px;
-      vertical-align: middle;
-    }
-    .feature-badge.pro { background: var(--red); }
-    .feature-badge.new-tag { background: #1a6b3c; }
-
-    /* ─── Pricing ─── */
-    .pricing-grid {
-      margin-top: 26px;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .pricing-tier {
-      background: var(--white);
-      border: 1px solid var(--border);
-      padding: 24px;
-    }
-    .pricing-tier.featured {
-      border: 2px solid var(--dark);
-    }
-    .tier-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 14px;
-    }
-    .tier-name {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.1rem;
-      text-transform: uppercase;
-      font-weight: 700;
-    }
-    .tier-badge {
-      font-size: 0.64rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 3px 9px;
-      background: var(--red);
-      color: #fff;
-    }
-    .tier-price {
-      font-family: 'Oswald', sans-serif;
-      font-size: 2.2rem;
-      font-weight: 700;
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-    .tier-price span {
-      font-size: 1rem;
-      font-weight: 400;
-      color: var(--muted);
-      font-family: 'Inter', sans-serif;
-    }
-    .tier-note {
-      font-size: 0.78rem;
-      color: var(--muted);
-      margin-bottom: 20px;
-      line-height: 1.5;
-    }
-    .tier-features {
-      display: flex;
-      flex-direction: column;
-      gap: 9px;
-      margin-bottom: 22px;
-      padding-bottom: 20px;
-      border-bottom: 1px solid var(--border);
-    }
-    .tier-feature {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 0.85rem;
-    }
-    .tier-check {
-      width: 17px;
-      height: 17px;
-      background: var(--red);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.58rem;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-    .tier-check.muted-check {
-      background: var(--border);
-    }
-    .tier-feature.dimmed { color: var(--muted); }
-    .btn-tier {
-      display: block;
-      padding: 14px 24px;
-      font-size: 0.82rem;
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-align: center;
-      transition: background 0.18s;
-      width: 100%;
-      text-decoration: none;
-      border: none;
-    }
-    .btn-tier.primary { background: var(--red); color: #fff; }
-    .btn-tier.primary:hover { background: var(--red-dark); }
-    .btn-tier.outline { background: transparent; border: 1.5px solid var(--border); color: var(--muted); }
-    .btn-tier.outline:hover { border-color: var(--text); color: var(--text); }
-
-    /* ─── Value Compare ─── */
-    .value-compare {
-      background: var(--white);
-      border: 1px solid var(--border);
-      padding: 22px;
-      margin-top: 26px;
-    }
-    .compare-label {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 16px;
-    }
-    .compare-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.875rem;
-    }
-    .compare-row:last-child { border-bottom: none; padding-bottom: 0; }
-    .compare-what { color: var(--muted); flex: 1; }
-    .compare-cost {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 700;
-      text-align: right;
-    }
-    .compare-cost.expensive { color: var(--red); }
-    .compare-cost.value { color: #2d8655; }
-
-    /* ─── FAQ ─── */
-    .faq-list {
-      margin-top: 26px;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .faq-item { background: var(--white); border: 1px solid var(--border); }
-    .faq-q {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 17px 20px;
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--text);
-      background: none;
-      border: none;
-      width: 100%;
-      text-align: left;
-      font-family: 'Inter', sans-serif;
-      transition: background 0.15s;
-    }
-    .faq-q:hover { background: var(--bg); }
-    .faq-icon {
-      color: var(--red);
-      font-size: 1.1rem;
-      flex-shrink: 0;
-      transition: transform 0.2s;
-      line-height: 1;
-    }
-    .faq-item.open .faq-icon { transform: rotate(45deg); }
-    .faq-a {
-      display: none;
-      padding: 16px 20px 18px;
-      font-size: 0.875rem;
-      color: var(--muted);
-      line-height: 1.75;
-      border-top: 1px solid var(--border);
-    }
-    .faq-item.open .faq-a { display: block; }
-
-    /* ─── Footer ─── */
-    footer {
-      background: var(--dark);
-      padding: 36px 22px 30px;
-    }
-    .footer-inner { max-width: 480px; margin: 0 auto; }
-    .footer-mark {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: #fff;
-      margin-bottom: 8px;
-    }
-    .footer-mark em { color: var(--red); font-style: normal; }
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px 18px;
-      margin-bottom: 18px;
-    }
-    .footer-links a {
-      font-size: 0.76rem;
-      color: rgba(255,255,255,0.35);
-      transition: color 0.18s;
-    }
-    .footer-links a:hover { color: rgba(255,255,255,0.7); }
-    .footer-legal {
-      font-size: 0.68rem;
-      color: rgba(255,255,255,0.22);
-      line-height: 1.65;
-      border-top: 1px solid rgba(255,255,255,0.07);
-      padding-top: 16px;
-    }
-  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css" />
+  <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
+  <main class="page">
 
-<!-- ═══════════════════════════ NAV -->
-<nav>
-  <a href="index.html" class="wordmark">down<em>to</em>invest</a>
-  <a href="https://etfinsight.org" target="_blank" class="btn-nav">Try ETF Insight &#8594;</a>
-</nav>
+    <!-- ======================= TOP BAR ======================= -->
+    <header class="topbar">
+      <a href="index.html" class="wordmark">downtoinvest<span class="dot">.</span></a>
+      <a href="https://etfinsight.org" target="_blank" rel="noopener" class="pill-cta">Try ETF Insight</a>
+    </header>
 
+    <!-- ======================= HERO ======================= -->
+    <section class="sales-hero">
+      <p class="eyebrow">ETF Insight</p>
+      <h1>Rich people pay an advisor 1% a year to answer one question: <span class="marker">am I doing this right?</span></h1>
+      <p class="lede">
+        ETF Insight helps you answer it for $6.65 a month. See what you actually own, in plain English, in under five minutes.
+      </p>
 
-<!-- ═══════════════════════════ HERO -->
-<div class="hero">
-  <div class="hero-inner">
-    <span class="hero-eyebrow">ETF Insight</span>
-    <h1>You probably own the same stocks three times and don't know it.</h1>
-    <p class="hero-sub">Most investors think they're diversified. They're not. ETF Insight shows you exactly what you own, down to every holding, every dollar, every overlap.</p>
-    <a href="https://etfinsight.org" target="_blank" class="btn-hero">Try It Free &#8594;</a>
-    <p class="hero-note">Free to start &middot; Pro from $6.65/month</p>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-
-<!-- ═══════════════════════════ THE OVERLAP PROBLEM -->
-<div class="section-white">
-  <div class="wrap">
-    <span class="label">The problem</span>
-    <h2>Diversified? Maybe not.</h2>
-    <p style="color:var(--muted); font-size:0.95rem; line-height:1.7; margin-top:10px;">VOO and VTI are two of the most popular Vanguard funds in the world. "S&amp;P 500" and "Total Stock Market" sound completely different, so millions of people own both thinking they've covered their bases. Here's what ETF Insight shows you when you actually look:</p>
-
-    <div class="overlap-card">
-      <div class="overlap-label">Portfolio analysis &middot; VOO + VTI</div>
-      <div class="overlap-funds">
-        <div class="fund-pill">VOO <span class="fund-amount">$4,000</span></div>
-        <div class="fund-pill">VTI <span class="fund-amount">$4,000</span></div>
-      </div>
-
-      <div class="overlap-bar-wrap">
-        <div class="overlap-bar-label">
-          <span>Overlapping exposure</span>
-          <span class="overlap-pct bad">94.63%</span>
-        </div>
-        <div class="bar-track"><div class="bar-fill" style="width:94.63%"></div></div>
-      </div>
-
-      <div class="overlap-bar-wrap">
-        <div class="overlap-bar-label">
-          <span>Unique exposure</span>
-          <span class="overlap-pct good">5.37%</span>
-        </div>
-        <div class="bar-track"><div class="bar-fill good" style="width:5.37%"></div></div>
-      </div>
-
-      <div class="overlap-callout">
-        94.63% overlap. You're paying for two funds and getting almost no extra diversification. Most people have no idea.
-      </div>
-    </div>
-
-    <!-- AI Assistant callout -->
-    <div style="margin-top:16px; background:var(--white); border:1px solid var(--border); padding:18px 20px;">
-      <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px; padding-bottom:12px; border-bottom:1px solid var(--border);">
-        <div style="width:28px; height:28px; background:var(--dark); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-          <span style="color:#fff; font-size:0.7rem; font-weight:700; font-family:'Oswald',sans-serif;">AI</span>
-        </div>
+      <div class="product-card">
         <div>
-          <div style="font-size:0.78rem; font-weight:600; color:var(--text);">ETF Insight Assistant</div>
-          <div style="font-size:0.68rem; color:var(--muted); letter-spacing:0.04em;">Powered by Claude</div>
+          <p class="ptitle">Free to start</p>
+          <div class="price">$6.65<span style="font-size: 14px; font-weight: 500;"> /mo</span></div>
+          <p class="pnote">Pro · Cancel anytime</p>
+        </div>
+        <a href="https://etfinsight.org" target="_blank" rel="noopener" class="buy">Try it free →</a>
+      </div>
+      <p style="font-size: 13px; color: var(--ink); margin: 18px 0 0; text-align: center; font-weight: 600; letter-spacing: -0.01em;">
+        11,490 analyses run and counting.
+      </p>
+    </section>
+
+    <!-- ======================= THE OVERLAP PROBLEM ======================= -->
+    <section style="padding: 32px 20px;" aria-labelledby="overlap-heading">
+      <p class="eyebrow" style="color: var(--red); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; margin: 0 0 12px;">What you can't see</p>
+      <h2 id="overlap-heading" style="font-size: 28px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; margin: 0 0 14px;">You might own the same stocks <span style="color: var(--red);">three times.</span></h2>
+      <p style="font-size: 14px; line-height: 1.65; color: var(--ink-muted); margin: 0;">
+        VOO and VTI are two of the most popular Vanguard funds in the world. "S&amp;P 500" and "Total Stock Market" sound completely different, so millions of people own both thinking they've covered their bases. Here's what ETF Insight shows you when you actually look.
+      </p>
+
+      <div class="overlap-card">
+        <p class="overlap-card-label">Portfolio analysis · VOO + VTI</p>
+        <div class="fund-pills">
+          <div class="fund-pill">VOO <span class="amt">$4,000</span></div>
+          <div class="fund-pill">VTI <span class="amt">$4,000</span></div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-row-label">
+            <span>Overlapping exposure</span>
+            <span class="pct bad">94.63%</span>
+          </div>
+          <div class="bar-track-v2"><div class="bar-fill-v2" style="width: 94.63%"></div></div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-row-label">
+            <span>Unique exposure</span>
+            <span class="pct good">5.37%</span>
+          </div>
+          <div class="bar-track-v2"><div class="bar-fill-v2 good" style="width: 5.37%"></div></div>
+        </div>
+
+        <div class="overlap-callout">
+          94.63% overlap. Two funds, almost the same exposure. Most people have no idea until they look.
         </div>
       </div>
-      <div style="background:var(--bg); padding:12px 14px; margin-bottom:10px;">
-        <p style="font-size:0.875rem; line-height:1.7; color:var(--text);">"This portfolio is nearly identical across both funds with 94.63% overlap, meaning you're essentially holding the same large-cap exposure twice. Want to dig in?"</p>
-      </div>
-      <div style="background:var(--bg); padding:12px 14px; margin-bottom:12px;">
-        <p style="font-size:0.875rem; line-height:1.7; color:var(--text);">"The real question is: what are you trying to accomplish with $8,000? If you want more genuine diversification, one of these could be replaced with something that actually adds different exposure, like international stocks, small-cap value, or dividend income. If you're happy with a pure US large-cap position, consolidating to just VTI would simplify things without changing your returns much. Want to explore either direction?"</p>
-      </div>
-      <p style="font-size:0.72rem; color:var(--muted);">The assistant spots the problem instantly, explains it simply, and tells you what to actually do about it.</p>
-    </div>
 
-    <p style="color:var(--muted); font-size:0.875rem; line-height:1.7; margin-top:16px;">This isn't a rare edge case. It's one of the most common portfolio mistakes beginners make — and there's no way to see it without a tool like this.</p>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-
-<!-- ═══════════════════════════ PAIN POINTS -->
-<div class="section">
-  <span class="label">Sound familiar?</span>
-  <h2>Buying funds isn't the same as building a portfolio.</h2>
-
-  <p style="color:var(--muted); font-size:0.95rem; line-height:1.7; margin-top:10px; margin-bottom:24px;">Most people think they're diversified because they own more than one fund. Diversification isn't about how many funds you own. It's about what's inside them.</p>
-
-  <div class="pain-list">
-    <div class="pain-item">
-      <div class="pain-icon">&#128242;</div>
-      <p>You bought it because you saw it on TikTok, or someone in a finance thread mentioned it, and it seemed like a solid pick.</p>
-    </div>
-    <div class="pain-item">
-      <div class="pain-icon">&#128101;</div>
-      <p>You bought it because a friend said they owned it and it was doing well. It felt safer than picking something yourself.</p>
-    </div>
-    <div class="pain-item">
-      <div class="pain-icon">&#128200;</div>
-      <p>You bought it because it had the best performance over the last year or two. Past returns felt like a good signal.</p>
-    </div>
-    <div class="pain-item">
-      <div class="pain-icon">&#128274;</div>
-      <p><strong>The result:</strong> you own four or five funds that all hold the same 50 stocks underneath. They just have different names.</p>
-    </div>
-    <div class="pain-item">
-      <div class="pain-icon">&#128308;</div>
-      <p>When the market drops, <strong>everything drops together.</strong> There's no cushion, no part of your portfolio holding steady, because it's all the same stocks just dressed up differently.</p>
-    </div>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-
-<!-- ═══════════════════════════ FEATURES -->
-<div class="section-white">
-  <div class="wrap">
-    <span class="label">What ETF Insight does</span>
-    <h2>Your portfolio. Actually explained.</h2>
-    <p style="color:var(--muted); font-size:0.95rem; line-height:1.7; margin-top:10px; margin-bottom:4px;">Enter your funds and dollar amounts. ETFs, mutual funds, and individual stocks all work. Then watch it all become clear.</p>
-
-    <div class="feature-list">
-
-      <div class="feature-card">
-        <div class="feature-tag">See what you own</div>
-        <h3>Every stock, every dollar</h3>
-        <p>Enter your funds and ETF Insight shows you every single company your money is in, not just the top 10. You'll see exactly how much you have in Apple, Nvidia, or anything else, across every fund you own. <strong>Most people are surprised by what they find.</strong></p>
+      <!-- AI assistant mockup -->
+      <div class="ai-callout">
+        <div class="ai-head">
+          <div class="ai-badge">AI</div>
+          <div>
+            <p class="title">ETF Insight Assistant</p>
+            <p class="sub">Powered by Claude</p>
+          </div>
+        </div>
+        <div class="ai-msg">"This portfolio shows 94.63% overlap across both funds. That means you're holding the same large-cap exposure twice. Want me to break down where the overlap is concentrated?"</div>
+        <div class="ai-msg">"For context: your $8,000 is essentially behaving like one fund, not two. Whether that's a problem depends on what you're trying to do. If you want broader exposure across the market, you'd want to see what other categories aren't represented here, like international, small-cap, or bonds."</div>
+        <p class="ai-foot">Spots the overlap instantly, explains what it means, and helps you think it through. For education only, not advice.</p>
       </div>
 
-      <div class="feature-card">
-        <div class="feature-tag">Overlap check</div>
-        <h3>Find out if your funds are doing the same thing</h3>
-        <p>If you own more than one fund, ETF Insight tells you how much they overlap. <strong>The higher the overlap, the less diversification you're actually getting,</strong> even if your funds have different names. Works with ETFs, mutual funds, and individual stocks, all mixed together.</p>
+      <p style="font-size: 13px; color: var(--ink-muted); line-height: 1.6; margin: 16px 0 0;">
+        This isn't a rare case. It's one of the most common portfolio surprises beginners run into. And there's no way to see it without a tool like this.
+      </p>
+    </section>
+
+    <!-- ======================= PAIN ======================= -->
+    <section class="pain-block" aria-labelledby="pain-heading">
+      <p class="eyebrow">Sound familiar?</p>
+      <h2 id="pain-heading">Most portfolios weren't built. They accumulated.</h2>
+      <div class="pain-line"><span class="n">01</span><span>A fund here because a friend mentioned it.</span></div>
+      <div class="pain-line"><span class="n">02</span><span>One there because it had great returns last year.</span></div>
+      <div class="pain-line"><span class="n">03</span><span>Something from a TikTok video that made sense at the time.</span></div>
+      <div class="pain-line"><span class="n">04</span><span>An old 401(k) you rolled over and never really looked at.</span></div>
+      <div class="pain-line"><span class="n">05</span><span>Before you know it, you own seven things and aren't sure if they actually work together.</span></div>
+      <p style="font-size: 14px; line-height: 1.65; color: var(--ink-muted); margin: 22px 0 0; font-style: italic;">
+        That's not your fault. Nobody teaches this. But it's worth checking.
+      </p>
+    </section>
+
+    <!-- ======================= FEATURES ======================= -->
+    <section style="padding: 32px 20px;" aria-labelledby="features-heading">
+      <p class="eyebrow" style="color: var(--red); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; margin: 0 0 12px;">What ETF Insight does</p>
+      <h2 id="features-heading" style="font-size: 28px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; margin: 0 0 12px;">Your portfolio. <span style="color: var(--red);">Actually visible.</span></h2>
+      <p style="font-size: 14px; line-height: 1.65; color: var(--ink-muted); margin: 0;">
+        Enter your funds and dollar amounts. ETFs, mutual funds, and individual stocks all work. Then watch it click.
+      </p>
+
+      <div class="feature-list">
+        <article class="feature-card">
+          <p class="tag">X-ray your portfolio</p>
+          <h3>See every stock you own, and where they overlap</h3>
+          <p>Find out you own Nvidia six different ways. Or that 40% of your "diversified" portfolio is sitting in ten stocks. Or that the four funds you bought are actually doing the same thing. <strong>Most people are surprised by what they find. Either way, you'll know.</strong></p>
+        </article>
+
+        <article class="feature-card">
+          <p class="tag">Where your money goes</p>
+          <h3>Your portfolio in plain English</h3>
+          <p>See which sectors your money is actually in: tech, healthcare, bonds, international, in real dollar amounts. <strong>Without reading a single prospectus.</strong></p>
+        </article>
+
+        <article class="feature-card">
+          <p class="tag">Historical pattern matching</p>
+          <h3>"Is this 2008 again? Is this the dot-com bubble?"</h3>
+          <p>ETF Insight compares today's market data against decades of history and shows you which past period it most closely resembles, and what happened next. <strong>The question every investor is quietly asking. Now you can actually look.</strong></p>
+        </article>
+
+        <article class="feature-card">
+          <p class="tag">Institutional money flows</p>
+          <h3>Follow where the big money is going</h3>
+          <p>See real-time inflows and outflows across funds, sectors, and asset classes. <strong>Where institutional money is moving, and where it's leaving.</strong> The same data the pros watch, in a view that actually makes sense.</p>
+        </article>
+
+        <article class="feature-card">
+          <p class="tag">Growth projections</p>
+          <h3>See where your portfolio could go</h3>
+          <p>Based on your actual holdings, ETF Insight runs thousands of simulations to show realistic ranges for the next 5, 10, 20, or 30 years. <strong>The same kind of modeling advisors charge 1% a year for.</strong></p>
+        </article>
+
+        <article class="feature-card">
+          <p class="tag">AI assistant</p>
+          <h3>Ask anything, get a real answer</h3>
+          <p>Connected to a live financial database, not the open internet. It knows your portfolio and answers in plain English. <strong>The questions you'd be embarrassed to ask anyone else. Finally answerable.</strong></p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ======================= AI ASSISTANT SPOTLIGHT ======================= -->
+    <section style="padding: 32px 20px; background: #fafaf7; border-top: 1px solid rgba(0,0,0,0.06); border-bottom: 1px solid rgba(0,0,0,0.06);" aria-labelledby="ai-spotlight-heading">
+      <p class="eyebrow" style="color: var(--red); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; margin: 0 0 12px;">The differentiator</p>
+      <h2 id="ai-spotlight-heading" style="font-size: 28px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; margin: 0 0 14px;">The closest thing to having someone <span style="color: var(--red);">look at your portfolio</span> on demand.</h2>
+      <p style="font-size: 14px; line-height: 1.65; color: var(--ink-muted); margin: 0 0 18px;">
+        Most portfolio tools give you a wall of numbers and leave you to figure it out. ETF Insight's AI Assistant explains what those numbers actually mean, in your own portfolio, in plain English.
+      </p>
+
+      <div style="background: white; border: 1px solid rgba(0,0,0,0.08); border-radius: 14px; padding: 18px; margin: 0 0 14px;">
+        <p style="font-size: 12px; font-weight: 600; color: var(--ink-muted); margin: 0 0 12px; letter-spacing: 0.02em;">Ask things like:</p>
+        <p style="font-size: 14px; line-height: 1.7; margin: 0 0 8px; color: var(--ink);">"Am I too concentrated in tech?"</p>
+        <p style="font-size: 14px; line-height: 1.7; margin: 0 0 8px; color: var(--ink);">"What's my biggest single-stock exposure?"</p>
+        <p style="font-size: 14px; line-height: 1.7; margin: 0 0 8px; color: var(--ink);">"How much of my portfolio is actually international?"</p>
+        <p style="font-size: 14px; line-height: 1.7; margin: 0; color: var(--ink);">"What categories am I missing entirely?"</p>
       </div>
 
-      <div class="feature-card">
-        <div class="feature-tag">Where your money goes</div>
-        <h3>Your portfolio in plain English</h3>
-        <p>See which industries your money is actually in: technology, healthcare, bonds, international, broken down in real dollar amounts. You also get a simple read on whether your portfolio leans more toward growth stocks or stable value stocks, <strong>without having to read a single prospectus.</strong></p>
+      <p style="font-size: 13px; color: var(--ink-muted); line-height: 1.65; margin: 0; font-style: italic;">
+        For education, not advice. But the kind of education that used to cost $300 an hour.
+      </p>
+    </section>
+
+    <!-- ======================= VOO OBJECTION ======================= -->
+    <section style="padding: 32px 20px;" aria-labelledby="voo-heading">
+      <p class="eyebrow" style="font-size: 11px; font-weight: 700; letter-spacing: 0.08em; margin: 0 0 12px;">For the "I just buy VOO" crowd</p>
+      <h2 id="voo-heading" style="font-size: 28px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; margin: 0 0 14px;">"But I just buy VOO."</h2>
+      <p style="font-size: 15px; line-height: 1.7; color: var(--ink); margin: 0 0 14px;">
+        Good. VOO is a fine default. But <strong>"default" isn't the same as "decision."</strong>
+      </p>
+      <p style="font-size: 14px; line-height: 1.7; color: var(--ink-muted); margin: 0 0 14px;">
+        When you buy VOO, you're making a massive bet on US large-cap, tech-heavy, dollar-denominated assets. That might be exactly right for you. Or it might not. ETF Insight helps you see what that actually looks like under the hood.
+      </p>
+      <p style="font-size: 14px; line-height: 1.7; color: var(--ink); margin: 0; font-style: italic;">
+        Not every portfolio needs to be complicated. But every portfolio is worth understanding.
+      </p>
+    </section>
+
+    <!-- ======================= MATH ======================= -->
+    <section class="math-block" aria-labelledby="math-heading">
+      <h2 id="math-heading">What rich people pay for. What you can have for $6.65.</h2>
+      <p style="font-size: 13px; color: var(--ink-muted); margin: 0 0 14px;">Annual cost comparison · $50,000 portfolio example.</p>
+
+      <div class="value-compare">
+        <div class="compare-row">
+          <span class="what">Financial advisor (1% AUM)</span>
+          <span class="cost high">$500/yr</span>
+        </div>
+        <div class="compare-row">
+          <span class="what">Portfolio analysis software (Bloomberg, Morningstar)</span>
+          <span class="cost high">$300 to $600/yr</span>
+        </div>
+        <div class="compare-row">
+          <span class="what">One hour with a fee-only advisor</span>
+          <span class="cost high">$250 to $400</span>
+        </div>
+        <div class="compare-row">
+          <span class="what">ETF Insight Pro (full access)</span>
+          <span class="cost low">$6.65/mo</span>
+        </div>
       </div>
+      <p style="font-size: 12px; color: var(--gray); line-height: 1.55; margin: 12px 0 0;">
+        The tools institutional investors use have been out of reach for most people. ETF Insight changes that.
+      </p>
+    </section>
 
-      <div class="feature-card">
-        <div class="feature-tag">Growth projections</div>
-        <h3>See where your portfolio could go</h3>
-        <p>Based on your actual holdings, ETF Insight runs thousands of simulations to show you a realistic range of what your money could grow to over the next 5, 10, 20, or 30 years. <strong>Financial advisors charge 1% of your portfolio annually to do this.</strong> It's built right in.</p>
-      </div>
+    <!-- ======================= FAQ ======================= -->
+    <section class="faq-block" aria-labelledby="faq-heading">
+      <h2 id="faq-heading">Before you start.</h2>
 
-      <div class="feature-card">
-        <div class="feature-tag">Market context</div>
-        <h3>What history says about right now</h3>
-        <p>The Playbook looks at today's market conditions and finds the closest historical matches, periods in the past that looked similar to now, and shows you what happened next. Updated weekly and reviewed by Mallory Warren, CFP®. <strong>The kind of context most regular investors never get to see.</strong></p>
-      </div>
+      <details class="faq-card" open>
+        <summary class="faq-q"><span>Do I need to connect my brokerage?</span><span class="plus">+</span></summary>
+        <p class="faq-a">No. You enter your funds and dollar amounts manually or drag and drop a screenshot or PDF. ETF Insight never touches your accounts.</p>
+      </details>
 
-      <div class="feature-card">
-        <div class="feature-tag">Follow the money</div>
-        <h3>Where billions are moving each week</h3>
-        <p>The weekly Flow Report tracks where big money is flowing in and out of the market: which ETFs are getting the most inflows, which sectors are seeing rotation, and what institutional investors are doing. Includes a plain-English summary so <strong>you don't need a finance background to understand it.</strong></p>
-      </div>
+      <details class="faq-card">
+        <summary class="faq-q"><span>What about mutual funds or individual stocks?</span><span class="plus">+</span></summary>
+        <p class="faq-a">Yes to all three. ETFs, mutual funds, and individual stocks can mix in the same portfolio. Most tickers are supported, though a very obscure one might not be.</p>
+      </details>
 
-      <div class="feature-card">
-        <div class="feature-tag">AI assistant</div>
-        <h3>Ask anything, get a real answer</h3>
-        <p>The ETF Insight Assistant is connected to our own live financial database, not just the open internet. Ask it what a fund actually holds, whether your overlap is a problem, or what a term means. <strong>It knows your portfolio and gives you straight answers in plain English,</strong> not generic AI guesses based on old training data.</p>
-      </div>
+      <details class="faq-card">
+        <summary class="faq-q"><span>Is this financial advice?</span><span class="plus">+</span></summary>
+        <p class="faq-a">No. ETF Insight is a portfolio analysis tool for education. It's not an RIA, not an advisor, and doesn't give personalized recommendations. For personalized advice, see <a href="https://www.aerdenplanning.com" target="_blank" rel="noopener" style="text-decoration: underline;">1:1 planning</a>.</p>
+      </details>
 
-    </div>
-  </div>
-</div>
+      <details class="faq-card">
+        <summary class="faq-q"><span>What can I try before paying?</span><span class="plus">+</span></summary>
+        <p class="faq-a">You can analyze up to 2 ETFs with no account and no credit card. You'll get a limited view of the analysis. To unlock the full tool (drag-and-drop entry, full portfolios, the AI assistant, historical pattern matching, and everything else), Pro is $6.65/month. Cancel anytime. For the current breakdown, head to <a href="https://etfinsight.org" target="_blank" rel="noopener" style="text-decoration: underline;">etfinsight.org</a>.</p>
+      </details>
+    </section>
 
-<div class="divider"></div>
+    <!-- ======================= CLOSE ======================= -->
+    <section class="close-block">
+      <h2>Start with your portfolio.<br/><span class="swap">Find out what you've been holding.</span></h2>
+      <p>Free to start · Pro from $6.65/month</p>
+      <a href="https://etfinsight.org" target="_blank" rel="noopener" class="close-cta">Try ETF Insight free →</a>
+    </section>
 
+    <!-- ======================= FOOTER ======================= -->
+    <footer class="dark-foot">
+      © 2026 downtoinvest · Advisory by <a href="https://www.aerdenplanning.com">Aerden LLC</a> · For education only. Not investment advice.<br/>
+      CFP® and CERTIFIED FINANCIAL PLANNER™ are certification marks owned by the CFP Board.
+    </footer>
 
-<!-- ═══════════════════════════ VALUE COMPARE -->
-<div class="section">
-  <span class="label">The math</span>
-  <h2>What this costs vs. what it replaces.</h2>
-
-  <div class="value-compare">
-    <div class="compare-label">Annual cost comparison &middot; $50,000 portfolio example</div>
-    <div class="compare-row">
-      <div class="compare-what">Financial advisor (1% AUM fee)</div>
-      <div class="compare-cost expensive">$500/yr</div>
-    </div>
-    <div class="compare-row">
-      <div class="compare-what">Portfolio analysis software (Bloomberg, Morningstar)</div>
-      <div class="compare-cost expensive">$300–600/yr</div>
-    </div>
-    <div class="compare-row">
-      <div class="compare-what">One hour with a fee-only advisor</div>
-      <div class="compare-cost expensive">$250–400</div>
-    </div>
-    <div class="compare-row">
-      <div class="compare-what">ETF Insight Pro (full access, everything)</div>
-      <div class="compare-cost value">$6.65/month</div>
-    </div>
-  </div>
-
-  <p style="color:var(--muted); font-size:0.82rem; line-height:1.65; margin-top:14px;">The tools institutional investors use to manage portfolios have been out of reach for most people. ETF Insight changes that.</p>
-</div>
-
-<div class="divider"></div>
-
-
-<!-- ═══════════════════════════ BOTTOM CTA -->
-<div class="section-dark">
-  <div class="section-dark-inner">
-    <span class="label" style="color:rgba(255,255,255,0.4);">Ready?</span>
-    <h2 style="color:#fff; margin-bottom:14px;">Start with your portfolio. See what you've been missing.</h2>
-    <p style="color:rgba(255,255,255,0.6); font-size:0.95rem; line-height:1.7; margin-bottom:28px;">Free to start. Pro unlocks everything for $6.65/month, less than one coffee. The clearest picture of your investments you've ever had.</p>
-    <a href="https://etfinsight.org" target="_blank" class="btn-nav" style="display:inline-block; font-size:0.85rem; padding:16px 28px;">Try ETF Insight Free &#8594;</a>
-    <p style="color:rgba(255,255,255,0.3); font-size:0.76rem; margin-top:14px;">No brokerage connection required &middot; Full pricing &amp; plan details at etfinsight.org</p>
-  </div>
-</div>
-
-
-<!-- ═══════════════════════════ FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-mark">down<em>to</em>invest</div>
-    <div class="footer-links">
-      <a href="index.html">Home</a>
-      <a href="investing-guide.html">Investing Guide</a>
-      <a href="https://etfinsight.org" target="_blank">ETF Insight</a>
-      <a href="https://www.aerden.llc" target="_blank">Aerden LLC</a>
-      <a href="https://www.aerden.llc/privacy.html" target="_blank">Privacy</a>
-      <a href="https://www.aerden.llc/terms.html" target="_blank">Terms</a>
-    </div>
-    <p class="footer-legal">
-      &copy; 2026 downtoinvest. Advisory services provided by Aerden LLC. CFP&reg; and CERTIFIED FINANCIAL PLANNER&trade; are certification marks owned by the Certified Financial Planner Board of Standards, Inc.
-    </p>
-    <p class="footer-legal" style="margin-top:10px; padding-top:10px; border-top:1px solid rgba(255,255,255,0.06);">
-      <strong style="color:rgba(255,255,255,0.3);">Disclaimer:</strong> All information is for educational purposes only and is not financial advice. Nothing on this site should be construed as a recommendation to buy or sell any security. Always consult a qualified professional before making financial decisions.
-    </p>
-  </div>
-</footer>
-
-
-<script>
-  function toggleFaq(btn) {
-    const item = btn.closest('.faq-item');
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
-  }
-</script>
-
+  </main>
 </body>
 </html>
