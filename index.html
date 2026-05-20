@@ -263,6 +263,27 @@
         });
       });
     })();
+
+    // CFP tooltip: tap to open, tap outside (or Escape) to close
+    (function () {
+      var cfp = document.querySelector('.cfp-info');
+      if (!cfp) return;
+      var btn = cfp.querySelector('button');
+      if (!btn) return;
+
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        cfp.classList.toggle('open');
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!cfp.contains(e.target)) cfp.classList.remove('open');
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') cfp.classList.remove('open');
+      });
+    })();
   </script>
 </body>
 </html>
