@@ -950,7 +950,7 @@ button {
 
 .pain-line {
   padding: 14px 0;
-  border-top: 1px solid rgba(246, 239, 217, 0.6);
+  border-top: 1px solid rgba(246, 239, 217, 0.18);
   font-size: 14px;
   line-height: 1.5;
   display: grid;
@@ -959,7 +959,7 @@ button {
 }
 
 .pain-line:last-child {
-  border-bottom: 1px solid rgba(246, 239, 217, 0.6);
+  border-bottom: 1px solid rgba(246, 239, 217, 0.18);
 }
 
 .pain-line .n {
